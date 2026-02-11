@@ -1,0 +1,9 @@
+services:
+  sady-celmerow:
+    build: .
+    container_name: sady-celmerow
+    ports:
+      - '3003:3000'
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production

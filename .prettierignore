@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+dist
+build
+_Old_project
+*.min.js
+*.min.css
+package-lock.json
