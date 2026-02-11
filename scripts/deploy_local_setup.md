@@ -13,13 +13,13 @@ How to configure your local machine to push-deploy to the VPS.
 VPS_HOST=91.98.112.186
 VPS_PORT=22
 VPS_USER=root
-REPO_PATH=/opt/repos/sady-celmerow.git
+REPO_PATH=/opt/sady-celmerow-deploy.git
 ```
 
 ## Step 1: Add the VPS as a Git Remote
 
 ```bash
-git remote add vps ssh://root@91.98.112.186/opt/repos/sady-celmerow.git
+git remote add vps ssh://root@91.98.112.186/opt/sady-celmerow-deploy.git
 ```
 
 ### Alternative: Using SSH Config Alias
@@ -39,7 +39,7 @@ Host dendigital
 Then use:
 
 ```bash
-git remote add vps dendigital:/opt/repos/sady-celmerow.git
+git remote add vps dendigital:/opt/sady-celmerow-deploy.git
 ```
 
 ## Step 2: First Push
@@ -50,7 +50,7 @@ git push vps main
 
 This triggers the `post-receive` hook on the VPS, which:
 
-1. Checks out the code to `/opt/apps/sady-celmerow`
+1. Checks out the code to `/srv/sady-celmerow`
 2. Builds the Docker image
 3. Restarts the container on port 3003
 
@@ -79,7 +79,7 @@ git push vps main
 - **Check deploy log on VPS:**
 
   ```bash
-  ssh root@91.98.112.186 "tail -50 /opt/apps/sady-celmerow/deploy.log"
+  ssh root@91.98.112.186 "tail -50 /srv/sady-celmerow/deploy.log"
   ```
 
 - **Check container status:**
@@ -96,5 +96,5 @@ git push vps main
 
 - **Manual rebuild on VPS:**
   ```bash
-  ssh root@91.98.112.186 "cd /opt/apps/sady-celmerow && docker compose up -d --build"
+  ssh root@91.98.112.186 "cd /srv/sady-celmerow && docker compose up -d --build"
   ```

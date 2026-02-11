@@ -1,17 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # post-receive — Git hook for auto-deploy
-# Installed at: /opt/repos/sady-celmerow.git/hooks/post-receive
+# Installed at: /opt/sady-celmerow-deploy.git/hooks/post-receive
 #
-set -euo pipefail
+set -e
 
 # ============================================================
 # CONFIGURATION
 # ============================================================
 APP_NAME="sady-celmerow"
-REPO_DIR="/opt/repos/${APP_NAME}.git"
-APP_DIR="/opt/apps/${APP_NAME}"
+REPO_DIR="/opt/${APP_NAME}-deploy.git"
+APP_DIR="/srv/${APP_NAME}"
 LOG_FILE="${APP_DIR}/deploy.log"
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
 
 # ============================================================
 # DEPLOY
@@ -22,27 +24,36 @@ LOG_FILE="${APP_DIR}/deploy.log"
     echo " DEPLOY START: $(date '+%Y-%m-%d %H:%M:%S')"
     echo "========================================"
 
-    # 1. Checkout latest code into the working directory
-    echo ">>> Checking out latest code to ${APP_DIR}..."
-    git --work-tree="${APP_DIR}" --git-dir="${REPO_DIR}" checkout -f
+    # Read the pushed ref
+    while read oldrev newrev refname; do
+        LAST_REF="$refname"
+    done
 
-    # 2. Move to the app directory
-    cd "${APP_DIR}"
+    if [ "$LAST_REF" = "refs/heads/main" ] || [ "$LAST_REF" = "refs/heads/master" ]; then
+        # 1. Checkout latest code into the working directory
+        echo ">>> Checking out latest code to ${APP_DIR}..."
+        git --work-tree="${APP_DIR}" --git-dir="${REPO_DIR}" checkout -f
 
-    # 3. Build and restart container
-    echo ">>> Building and restarting Docker container..."
-    docker compose down --remove-orphans 2>/dev/null || true
-    docker compose up -d --build
+        # 2. Move to the app directory
+        cd "${APP_DIR}"
 
-    # 4. Clean up dangling images (optional, saves disk)
-    echo ">>> Cleaning up old Docker images..."
-    docker image prune -f 2>/dev/null || true
+        # 3. Build and restart container
+        echo ">>> Building and restarting Docker container..."
+        docker compose down --remove-orphans 2>/dev/null || true
+        docker compose up -d --build
 
-    echo ""
-    echo "========================================"
-    echo " DEPLOY COMPLETE: $(date '+%Y-%m-%d %H:%M:%S')"
-    echo " App: ${APP_NAME}"
-    echo " URL: http://$(hostname -I | awk '{print $1}'):3003"
-    echo "========================================"
+        # 4. Clean up dangling images (saves disk)
+        echo ">>> Cleaning up old Docker images..."
+        docker image prune -f 2>/dev/null || true
+
+        echo ""
+        echo "========================================"
+        echo " DEPLOY COMPLETE: $(date '+%Y-%m-%d %H:%M:%S')"
+        echo " App: ${APP_NAME}"
+        echo " URL: http://$(hostname -I | awk '{print $1}'):3003"
+        echo "========================================"
+    else
+        echo ">>> Branch $LAST_REF ignored — only main/master deploys."
+    fi
 
 } 2>&1 | tee -a "${LOG_FILE}"

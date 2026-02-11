@@ -83,8 +83,8 @@ ssh root@91.98.112.186 "bash /tmp/setup_vps_deploy.sh"
 
 This creates:
 
-- Bare git repo at `/opt/repos/sady-celmerow.git`
-- Working directory at `/opt/apps/sady-celmerow`
+- Bare git repo at `/opt/sady-celmerow-deploy.git`
+- Working directory at `/srv/sady-celmerow`
 - Installs the `post-receive` hook
 
 ### 3.3 Verify Docker on VPS
@@ -107,13 +107,13 @@ systemctl start docker
 ## 4. Configure Local Git Remote
 
 ```bash
-git remote add vps ssh://root@91.98.112.186/opt/repos/sady-celmerow.git
+git remote add vps ssh://root@91.98.112.186/opt/sady-celmerow-deploy.git
 ```
 
 **Alternative** — if you have an SSH config alias `dendigital`:
 
 ```bash
-git remote add vps dendigital:/opt/repos/sady-celmerow.git
+git remote add vps dendigital:/opt/sady-celmerow-deploy.git
 ```
 
 ---
@@ -126,9 +126,9 @@ git push vps main
 
 The push triggers the `post-receive` hook which:
 
-1. Checks out the latest code to `/opt/apps/sady-celmerow`
+1. Checks out the latest code to `/srv/sady-celmerow`
 2. Runs `docker compose up -d --build`
-3. Logs output to `/opt/apps/sady-celmerow/deploy.log`
+3. Logs output to `/srv/sady-celmerow/deploy.log`
 
 ---
 
@@ -145,7 +145,7 @@ You should see the "Sady Celmerów — Strona w przygotowaniu" placeholder page.
 ### View deploy logs
 
 ```bash
-ssh root@91.98.112.186 "tail -100 /opt/apps/sady-celmerow/deploy.log"
+ssh root@91.98.112.186 "tail -100 /srv/sady-celmerow/deploy.log"
 ```
 
 ### Check running containers
@@ -163,13 +163,13 @@ ssh root@91.98.112.186 "docker logs sady-celmerow --tail 50"
 ### Manual rebuild on VPS
 
 ```bash
-ssh root@91.98.112.186 "cd /opt/apps/sady-celmerow && docker compose up -d --build"
+ssh root@91.98.112.186 "cd /srv/sady-celmerow && docker compose up -d --build"
 ```
 
 ### Full restart from scratch
 
 ```bash
-ssh root@91.98.112.186 "cd /opt/apps/sady-celmerow && docker compose down && docker compose up -d --build"
+ssh root@91.98.112.186 "cd /srv/sady-celmerow && docker compose down && docker compose up -d --build"
 ```
 
 ---
@@ -182,9 +182,9 @@ ssh root@91.98.112.186 "cd /opt/apps/sady-celmerow && docker compose down && doc
 | VPS_PORT   | 22                                 |
 | APP_NAME   | sady-celmerow                      |
 | APP_PORT   | 3003 (host) → 3000 (container)     |
-| REPO_DIR   | /opt/repos/sady-celmerow.git       |
-| APP_DIR    | /opt/apps/sady-celmerow            |
-| DEPLOY_LOG | /opt/apps/sady-celmerow/deploy.log |
+| REPO_DIR   | /opt/sady-celmerow-deploy.git      |
+| APP_DIR    | /srv/sady-celmerow                 |
+| DEPLOY_LOG | /srv/sady-celmerow/deploy.log      |
 
 ---
 
