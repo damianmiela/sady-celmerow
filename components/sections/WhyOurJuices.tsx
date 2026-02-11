@@ -22,7 +22,7 @@ const descriptions = [
 
 export default function WhyOurJuices() {
   return (
-    <Section id="dlaczego" className="bg-primary-50/50">
+    <Section id="dlaczego">
       <SectionHeader title="Dlaczego nasze soki są takie dobre?" />
 
       {/* Quality Badges */}
@@ -32,16 +32,16 @@ export default function WhyOurJuices() {
           return (
             <motion.div
               key={i}
-              className="flex flex-col items-center gap-3 rounded-2xl bg-white p-5 text-center shadow-sm"
+              className="flex flex-col items-center gap-3 rounded-2xl bg-white p-5 text-center shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-600">
-                <Icon size={24} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-500">
+                <Icon size={22} strokeWidth={1.75} />
               </div>
-              <p className="text-sm font-medium leading-tight text-muted-700">
+              <p className="text-sm font-medium leading-snug text-muted-700">
                 {q.text}
               </p>
             </motion.div>
@@ -51,7 +51,7 @@ export default function WhyOurJuices() {
 
       {/* Description */}
       <motion.div
-        className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2 md:items-center"
+        className="mx-auto mt-16 grid max-w-4xl gap-10 md:grid-cols-2 md:items-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -66,9 +66,9 @@ export default function WhyOurJuices() {
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
-        <div className="space-y-4">
+        <div className="space-y-5">
           {descriptions.map((text, i) => (
-            <p key={i} className="text-base leading-relaxed text-muted-600">
+            <p key={i} className="prose-paragraph">
               {text}
             </p>
           ))}

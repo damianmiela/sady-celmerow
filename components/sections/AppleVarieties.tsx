@@ -30,7 +30,7 @@ export default function AppleVarieties() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             <Image
@@ -40,9 +40,15 @@ export default function AppleVarieties() {
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            {/* Stronger bottom gradient for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-3">
-              <p className="font-heading text-base font-semibold text-white drop-shadow-md md:text-lg">
+              <p
+                className="font-heading text-base font-semibold text-white md:text-lg"
+                style={{
+                  textShadow: '0 1px 4px rgba(0,0,0,0.5)',
+                }}
+              >
                 {variety.name}
               </p>
             </div>
@@ -52,7 +58,7 @@ export default function AppleVarieties() {
 
       {/* Description Text */}
       <motion.div
-        className="mx-auto mt-12 max-w-3xl space-y-4"
+        className="mx-auto mt-14 max-w-[65ch] space-y-5"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -61,7 +67,7 @@ export default function AppleVarieties() {
         {appleVarietiesDescription.map((text, i) => (
           <p
             key={i}
-            className="text-center text-base leading-relaxed text-muted-600 md:text-lg"
+            className="text-center text-base leading-[1.8] text-muted-600 md:text-lg md:leading-[1.8]"
           >
             {text}
           </p>
