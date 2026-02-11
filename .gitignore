@@ -38,5 +38,8 @@ next-env.d.ts
 *.swp
 *.swo
 
+# Local docs (kept locally, not deployed)
+docs/
+
 # Legacy project (will be refactored later)
 _Old_project/
