@@ -32,7 +32,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
     if [ "$LAST_REF" = "refs/heads/main" ] || [ "$LAST_REF" = "refs/heads/master" ]; then
         # 1. Checkout latest code into the working directory
         echo ">>> Checking out latest code to ${APP_DIR}..."
-        git --work-tree="${APP_DIR}" --git-dir="${REPO_DIR}" checkout -f
+        git --work-tree="${APP_DIR}" --git-dir="${REPO_DIR}" checkout -f main
 
         # 2. Move to the app directory
         cd "${APP_DIR}"

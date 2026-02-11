@@ -28,6 +28,7 @@ mkdir -p "${APP_DIR}"
 if [ ! -f "${REPO_DIR}/HEAD" ]; then
     echo ">>> Initializing bare repository at ${REPO_DIR}..."
     git init --bare "${REPO_DIR}"
+    git -C "${REPO_DIR}" symbolic-ref HEAD refs/heads/main
 else
     echo ">>> Bare repository already exists at ${REPO_DIR}, skipping init."
 fi
