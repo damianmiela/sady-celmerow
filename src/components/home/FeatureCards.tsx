@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Apple, Droplets, TreePine, Camera } from "lucide-react";
+import { Apple, Droplets, Camera } from "lucide-react";
 
 const features = [
   {
@@ -22,14 +22,6 @@ const features = [
     image: "/images/odmiany/topaz.jpg",
   },
   {
-    icon: TreePine,
-    title: "O nas",
-    description:
-      "Rodzinne gospodarstwo z kilkudziesięcioletnią tradycją — już trzecie pokolenie sadowników.",
-    href: "/#o-nas",
-    image: "/images/hero/big-photo3.jpg",
-  },
-  {
     icon: Camera,
     title: "Galeria",
     description:
@@ -43,7 +35,7 @@ export default function FeatureCards() {
   return (
     <section className="section-padding bg-cream-100">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
             <motion.div
               key={feature.href}
