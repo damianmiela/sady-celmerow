@@ -1,65 +1,57 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0fdf0',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#2D6A2E',
-          600: '#256023',
-          700: '#1a4a1b',
-          800: '#143814',
-          900: '#0f2d10',
+        cream: {
+          50: "#FEFDFB",
+          100: "#FAF7F2",
+          200: "#F5F0E8",
+          300: "#EBE4D6",
         },
-        accent: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#d4a017',
+        sage: {
+          50: "#F0F5EE",
+          100: "#DCE8D8",
+          200: "#B8D1AF",
+          300: "#8FB882",
+          400: "#6A9E5B",
+          500: "#4A7C59",
+          600: "#3B6347",
+          700: "#2D4A35",
+          800: "#1F3224",
+          900: "#111A13",
         },
-        muted: {
-          50: '#fafafa',
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-          300: '#d4d4d4',
-          400: '#a3a3a3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
+        bark: {
+          100: "#E8DFD0",
+          200: "#C4B8A5",
+          300: "#A09279",
+          400: "#7D6D52",
+          500: "#5C4033",
+          600: "#463024",
         },
       },
       fontFamily: {
-        heading: ['var(--font-playfair)', 'Georgia', 'serif'],
-        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: [
+          "var(--font-sans)",
+          "system-ui",
+          "-apple-system",
+          "sans-serif",
+        ],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       container: {
         center: true,
         padding: {
-          DEFAULT: '1rem',
-          sm: '2rem',
-          lg: '4rem',
-          xl: '5rem',
+          DEFAULT: "1rem",
+          sm: "1.5rem",
+          lg: "2rem",
         },
-      },
-      maxWidth: {
-        content: '1280px',
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [],
 };
 
 export default config;
