@@ -1,5 +1,6 @@
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
+import FeatureCards from "@/components/home/FeatureCards";
 import InfiniteMarquee from "@/components/home/InfiniteMarquee";
 import Script from "next/script";
 
@@ -20,11 +21,11 @@ const jsonLd = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 51.3097,
-    longitude: 17.0617,
+    latitude: 51.30645,
+    longitude: 17.05027,
   },
   image: "https://sadycelmerow.pl/images/logo-512.png",
-  sameAs: ["https://www.facebook.com/sadycelmerow"],
+  sameAs: ["https://www.facebook.com/sady.celmerow"],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -44,6 +45,7 @@ export default function Home() {
       />
       <Hero />
       <AboutSection />
+      <FeatureCards />
       <InfiniteMarquee />
     </>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 
@@ -24,8 +24,7 @@ const images = [
 export default function InfiniteMarquee() {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  // Duplicate for seamless loop
-  const allImages = [...images, ...images];
+  const allImages = useMemo(() => [...images, ...images], []);
 
   const handlePrev = useCallback(() => {
     setLightboxIndex((i) => (i <= 0 ? images.length - 1 : i - 1));
@@ -42,6 +41,7 @@ export default function InfiniteMarquee() {
           <button
             key={`${img.src}-${i}`}
             onClick={() => setLightboxIndex(i % images.length)}
+            aria-label={`Otwórz zdjęcie: ${img.alt}`}
             className="relative h-48 w-72 flex-shrink-0 cursor-pointer overflow-hidden rounded-xl md:h-56 md:w-80"
           >
             <Image

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function GaleriaPage() {
   return (
     <>
-      <PageHero imageSrc="/images/gallery/czerwone-jablka.jpg" />
+      <PageHero imageSrc="/images/gallery/czerwone-jablka.jpg" alt="Galeria zdjęć z Sadów Celmerów — czerwone jabłka" />
 
       <section className="section-padding bg-cream-50">
         <SectionHeading>Galeria zdjęć</SectionHeading>

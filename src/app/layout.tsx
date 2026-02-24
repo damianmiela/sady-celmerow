@@ -47,6 +47,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pl_PL",
     siteName: "Sady Celmerów",
+    images: [
+      {
+        url: "/images/hero/big-photo1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sady Celmerów — Rodzinne Gospodarstwo Sadownicze",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sady Celmerów | Rodzinne Gospodarstwo Sadownicze ze wzgórz Trzebnickich",
+    description:
+      "Rodzinne gospodarstwo sadownicze ze wzgórz Trzebnickich. Jabłka, naturalne soki tłoczone i przetwory owocowe.",
+    images: ["/images/hero/big-photo1.jpg"],
   },
   robots: {
     index: true,
@@ -71,8 +86,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pl" className={`${lato.variable} ${lora.variable}`}>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-sage-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+        >
+          Przejdź do treści
+        </a>
         <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <main id="main-content" className="min-h-screen">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

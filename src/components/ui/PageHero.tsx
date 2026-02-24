@@ -2,10 +2,10 @@ import Image from "next/image";
 
 interface PageHeroProps {
   imageSrc: string;
-  alt?: string;
+  alt: string;
 }
 
-export default function PageHero({ imageSrc, alt = "" }: PageHeroProps) {
+export default function PageHero({ imageSrc, alt }: PageHeroProps) {
   return (
     <section className="relative h-[32vh] min-h-[220px] overflow-hidden md:h-[40vh]">
       <Image

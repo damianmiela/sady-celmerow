@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function OdmianyPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/big-photo4.jpg" />
+      <PageHero imageSrc="/images/hero/big-photo4.jpg" alt="Odmiany jabłek uprawiane w Sadach Celmerów" />
       <OdmianyContent />
     </>
   );

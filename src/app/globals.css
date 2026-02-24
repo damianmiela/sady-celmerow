@@ -84,6 +84,6 @@
     left: 0;
   }
   50% {
-    left: calc(var(--track-width) - 48px);
+    left: calc(100% - 48px);
   }
 }

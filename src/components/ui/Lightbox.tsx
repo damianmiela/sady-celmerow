@@ -72,8 +72,8 @@ export default function Lightbox({
                   e.stopPropagation();
                   onPrev();
                 }}
-                className="absolute left-4 z-50 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-                aria-label="Poprzednie"
+                className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                aria-label="Poprzednie zdjęcie"
               >
                 <ChevronLeft size={28} />
               </button>
@@ -82,8 +82,8 @@ export default function Lightbox({
                   e.stopPropagation();
                   onNext();
                 }}
-                className="absolute right-4 z-50 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-                aria-label="Następne"
+                className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                aria-label="Następne zdjęcie"
               >
                 <ChevronRight size={28} />
               </button>

@@ -6,7 +6,7 @@ export const siteConfig = {
   taglineSub: "ze wzgórz Trzebnickich",
   url: "https://sadycelmerow.pl",
   email: "sady.celmerow@gmail.com",
-  facebook: "https://facebook.com/sady.celmerow",
+  facebook: "https://www.facebook.com/sady.celmerow",
   address: {
     street: "ul. Obornicka 18",
     city: "55-100 Trzebnica",
@@ -168,7 +168,7 @@ export const galleryPhotos: GalleryPhoto[] = [
     category: "sad",
   },
   {
-    src: "/images/gallery/jablka-zbliżenie.jpg",
+    src: "/images/gallery/jablka-zblizenie.jpg",
     alt: "Jabłka — zbliżenie",
     category: "sad",
   },

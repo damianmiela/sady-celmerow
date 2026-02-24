@@ -26,7 +26,7 @@ const features = [
     title: "O nas",
     description:
       "Rodzinne gospodarstwo z kilkudziesięcioletnią tradycją — już trzecie pokolenie sadowników.",
-    href: "/o-nas",
+    href: "/#o-nas",
     image: "/images/hero/big-photo3.jpg",
   },
   {
