@@ -14,11 +14,11 @@ import {
 import { siteConfig, navLinks } from "@/lib/data";
 
 const navIcons: Record<string, React.ReactNode> = {
-  "/": <Home size={13} />,
-  "/soki": <GlassWater size={13} />,
-  "/odmiany": <Apple size={13} />,
-  "/galeria": <Images size={13} />,
-  "/kontakt": <Mail size={13} />,
+  "/": <Home size={15} />,
+  "/soki": <GlassWater size={15} />,
+  "/odmiany": <Apple size={15} />,
+  "/galeria": <Images size={15} />,
+  "/kontakt": <Mail size={15} />,
 };
 
 export default function Footer() {
@@ -37,8 +37,8 @@ export default function Footer() {
               height={156}
               className="mb-3 h-36 w-auto brightness-110"
             />
-            <p className="text-center text-sm font-bold text-white">Sady Celmerów</p>
-            <p className="mt-1 text-center text-xs leading-relaxed text-cream-300">
+            <p className="text-center text-base font-bold text-white">Sady Celmerów</p>
+            <p className="mt-1 text-center text-sm leading-relaxed text-cream-300">
               {siteConfig.tagline}
               <br />
               {siteConfig.taglineSub}
@@ -47,7 +47,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-cream-300">
+            <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-cream-300">
               Nawigacja
             </h4>
             <ul className="space-y-1.5">
@@ -55,7 +55,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 text-xs text-cream-200 transition-colors hover:text-white"
+                    className="flex items-center gap-2 text-sm text-cream-200 transition-colors hover:text-white"
                   >
                     <span className="text-sage-400">{navIcons[link.href]}</span>
                     {link.label}
@@ -67,13 +67,13 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-cream-300">
+            <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-cream-300">
               Kontakt
             </h4>
-            <div className="space-y-1.5 text-xs">
+            <div className="space-y-1.5 text-sm">
               {siteConfig.contacts.map((c) => (
                 <div key={c.name} className="flex items-center gap-2">
-                  <Phone size={13} className="text-sage-400" />
+                  <Phone size={15} className="text-sage-400" />
                   <span>
                     {c.name}:{" "}
                     <a
@@ -86,7 +86,7 @@ export default function Footer() {
                 </div>
               ))}
               <div className="flex items-center gap-2">
-                <MapPin size={13} className="text-sage-400" />
+                <MapPin size={15} className="text-sage-400" />
                 <span>
                   {siteConfig.address.street}, {siteConfig.address.city}
                 </span>
@@ -96,12 +96,12 @@ export default function Footer() {
 
           {/* Email + Social */}
           <div>
-            <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-cream-300">
+            <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-cream-300">
               Napisz do nas
             </h4>
-            <div className="space-y-1.5 text-xs">
+            <div className="space-y-1.5 text-sm">
               <div className="flex items-center gap-2">
-                <Mail size={13} className="text-sage-400" />
+                <Mail size={15} className="text-sage-400" />
                 <a
                   href={`mailto:${siteConfig.email}`}
                   className="transition-colors hover:text-white"
@@ -110,7 +110,7 @@ export default function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Facebook size={13} className="text-sage-400" />
+                <Facebook size={15} className="text-sage-400" />
                 <a
                   href={siteConfig.facebook}
                   target="_blank"
@@ -125,7 +125,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-2 border-t border-sage-700/50 pt-4 text-[10px] text-cream-300 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-2 border-t border-sage-700/50 pt-4 text-xs text-cream-300 sm:flex-row">
           <span>
             &copy; {year} {siteConfig.name}. Wszelkie prawa zastrzeżone.
           </span>

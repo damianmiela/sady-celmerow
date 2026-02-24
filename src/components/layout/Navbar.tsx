@@ -59,7 +59,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={cn(
-                    "nav-link relative rounded-md px-4 py-2 text-sm font-medium transition-all duration-300",
+                    "nav-link relative rounded-md px-4 py-2 text-base font-medium transition-all duration-300",
                     pathname === link.href
                       ? "text-sage-700"
                       : "text-sage-600 hover:text-sage-800",
