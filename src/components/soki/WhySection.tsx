@@ -82,8 +82,33 @@ export default function WhySection() {
     <section className="section-padding bg-cream-100">
       <SectionHeading>Dlaczego nasze soki są takie dobre?</SectionHeading>
 
-      {/* Quality cards — 5 items in a balanced grid */}
-      <div className="mx-auto mb-14 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+      {/* Mobile: vertical card list */}
+      <div className="mx-auto mb-14 flex max-w-md flex-col gap-2 md:hidden">
+        {qualities.map((q, i) => {
+          const Icon = q.icon;
+          return (
+            <AnimatedSection key={i} delay={i * 0.06}>
+              <div className="flex items-center gap-3 rounded-xl border border-sage-200/40 bg-white px-3 py-2.5 shadow-sm">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-sage-50 text-sage-500">
+                  {q.customIcon === "sugar" ? (
+                    <SugarCubeOff size={22} />
+                  ) : q.customIcon === "colorant" ? (
+                    <NoColorants size={22} />
+                  ) : (
+                    Icon && <Icon size={22} />
+                  )}
+                </div>
+                <span className="text-sm font-medium text-sage-700">
+                  {q.text}
+                </span>
+              </div>
+            </AnimatedSection>
+          );
+        })}
+      </div>
+
+      {/* Desktop: 5-column grid */}
+      <div className="mx-auto mb-14 hidden max-w-4xl grid-cols-5 gap-4 md:grid">
         {qualities.map((q, i) => {
           const Icon = q.icon;
           return (
