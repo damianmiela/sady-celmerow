@@ -28,7 +28,15 @@ export default function OdmianyContent() {
       <section className="section-padding bg-cream-50">
         <SectionHeading>Odmiany jabłek</SectionHeading>
 
-        <div className="mx-auto mb-14 grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <AnimatedSection className="mx-auto mb-14 max-w-3xl space-y-5">
+          {varietiesText.map((text, i) => (
+            <p key={i} className="text-center leading-relaxed text-neutral-600">
+              {text}
+            </p>
+          ))}
+        </AnimatedSection>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {appleVarieties.map((variety, i) => (
             <AppleCard
               key={variety.name}
@@ -38,14 +46,6 @@ export default function OdmianyContent() {
             />
           ))}
         </div>
-
-        <AnimatedSection className="mx-auto max-w-3xl space-y-5">
-          {varietiesText.map((text, i) => (
-            <p key={i} className="text-center leading-relaxed text-neutral-600">
-              {text}
-            </p>
-          ))}
-        </AnimatedSection>
       </section>
 
       <Lightbox
