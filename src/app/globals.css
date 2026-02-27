@@ -73,17 +73,3 @@
   transform: scaleX(1);
 }
 
-/* ─── Section heading animated divider ───────────────────── */
-.heading-divider {
-  animation: divider-slide 4s ease-in-out infinite;
-}
-
-@keyframes divider-slide {
-  0%,
-  100% {
-    left: 0;
-  }
-  50% {
-    left: calc(100% - 48px);
-  }
-}

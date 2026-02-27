@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { reviews, type Review } from "@/lib/data";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const AVATAR_COLORS = [
   "bg-sage-500",
@@ -83,30 +84,18 @@ export default function Reviews() {
   return (
     <section className="section-padding bg-cream-50">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 text-center md:mb-12"
-        >
-          <div className="inline-block">
-            <h2 className="text-3xl font-semibold tracking-tight text-sage-700 md:text-4xl">
-              Opinie naszych klientów
-            </h2>
-            <p className="mt-3 text-neutral-500">
-              Sprawdź, co mówią o nas na{" "}
-              <a
-                href="https://maps.app.goo.gl/wqhpFznwqihPggFJ8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-sage-600 underline decoration-sage-300 underline-offset-2 transition-colors hover:text-sage-800"
-              >
-                Google Maps
-              </a>
-            </p>
-          </div>
-        </motion.div>
+        <SectionHeading>Opinie naszych klientów</SectionHeading>
+        <p className="-mt-6 mb-10 text-center text-neutral-500 md:-mt-10 md:mb-12">
+          Sprawdź, co mówią o nas na{" "}
+          <a
+            href="https://maps.app.goo.gl/wqhpFznwqihPggFJ8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-sage-600 underline decoration-sage-300 underline-offset-2 transition-colors hover:text-sage-800"
+          >
+            Google Maps
+          </a>
+        </p>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {selected.map((review, i) => (
