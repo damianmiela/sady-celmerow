@@ -75,14 +75,14 @@ export default function Reviews() {
   const [selected, setSelected] = useState<Review[]>([]);
 
   useEffect(() => {
-    setSelected(pickRandom(reviews, 3));
+    setSelected(pickRandom(reviews, 5));
   }, []);
 
   if (selected.length === 0) return null;
 
   return (
     <section className="section-padding bg-cream-50">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,12 +95,20 @@ export default function Reviews() {
               Opinie naszych klientów
             </h2>
             <p className="mt-3 text-neutral-500">
-              Sprawdź, co mówią o nas na Google Maps
+              Sprawdź, co mówią o nas na{" "}
+              <a
+                href="https://maps.app.goo.gl/wqhpFznwqihPggFJ8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-sage-600 underline decoration-sage-300 underline-offset-2 transition-colors hover:text-sage-800"
+              >
+                Google Maps
+              </a>
             </p>
           </div>
         </motion.div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {selected.map((review, i) => (
             <motion.div
               key={review.name}
@@ -117,7 +125,7 @@ export default function Reviews() {
                   {getInitial(review.name)}
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold text-neutral-800">
+                  <p className="truncate text-[0.9rem] font-semibold text-neutral-800">
                     {review.name}
                   </p>
                   <div className="flex items-center gap-2">
@@ -126,7 +134,7 @@ export default function Reviews() {
                 </div>
               </div>
 
-              <p className="flex-1 text-sm leading-relaxed text-neutral-600">
+              <p className="flex-1 text-[0.9rem] leading-relaxed text-neutral-600">
                 &ldquo;{review.text}&rdquo;
               </p>
 
