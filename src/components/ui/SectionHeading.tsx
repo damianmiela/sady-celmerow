@@ -19,15 +19,15 @@ export default function SectionHeading({
       transition={{ duration: 0.6 }}
       className={`mb-10 text-center md:mb-14 ${className}`}
     >
-      <div className="flex items-center gap-4 md:gap-6">
+      <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="h-px flex-1 origin-right bg-gradient-to-r from-transparent to-sage-300"
+          className="hidden h-px min-w-8 flex-1 origin-right bg-gradient-to-r from-transparent to-sage-300 sm:block"
         />
-        <h2 className="flex-shrink-0 text-3xl font-semibold tracking-tight text-sage-700 md:text-4xl">
+        <h2 className="min-w-0 text-2xl font-semibold tracking-tight text-sage-700 sm:text-3xl md:text-4xl">
           {children}
         </h2>
         <motion.div
@@ -35,7 +35,7 @@ export default function SectionHeading({
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="h-px flex-1 origin-left bg-gradient-to-l from-transparent to-sage-300"
+          className="hidden h-px min-w-8 flex-1 origin-left bg-gradient-to-l from-transparent to-sage-300 sm:block"
         />
       </div>
     </motion.div>
