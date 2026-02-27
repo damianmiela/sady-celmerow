@@ -1,6 +1,7 @@
 import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
 import FeatureCards from "@/components/home/FeatureCards";
+import Reviews from "@/components/home/Reviews";
 import InfiniteMarquee from "@/components/home/InfiniteMarquee";
 import Script from "next/script";
 
@@ -46,6 +47,7 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <FeatureCards />
+      <Reviews />
       <InfiniteMarquee />
     </>
   );

@@ -148,6 +148,67 @@ export const varietiesText = [
   "Dążymy do tego, aby środki ochrony roślin były stosowane z umiarem, a w sadzie panowała równowaga biologiczna. W naszych sadach znajdziemy mnóstwo biedronek, pająków, skorków i dobroczynków. Na drzewach zauważyć można gniazda ptaków. Sady odwiedzają też sarny, borsuki, lisy, zające i bażanty. I zupełnie nam to nie przeszkadza:)",
 ];
 
+/* ─── Reviews ──────────────────────────────────────────────── */
+
+export interface Review {
+  name: string;
+  date: string;
+  text: string;
+}
+
+export const reviews: Review[] = [
+  {
+    name: "Yuliia Hunza",
+    date: "2025-09-15",
+    text: "Cudowne miejsce pełne natury i spokoju. Byliśmy tam w weekend i czuliśmy się jak na małym święcie – własnoręczne zbieranie jabłek daje tyle radości! Atmosfera jest bardzo rodzinna i serdeczna. Polecam wszystkim, którzy chcą odpocząć od codzienności i wrócić do domu z koszem pysznych jabłek.",
+  },
+  {
+    name: "Mariola Mecner",
+    date: "2024-02-10",
+    text: "Byliśmy dzisiaj rodzinną ekipą na samozbiorach. Super atmosfera, pyszne i soczyste wszystkie odmiany jabłek. Dodatkowo możliwość zakupu już zebranych jabłek a także gruszek, suszonych jabłek, soków i wiele innych rzeczy. Bardzo dobry grzany sok jabłkowy, którym można się degustować przy rozpalonym ognisku. Z całego serca polecam!",
+  },
+  {
+    name: "Bogumiła Ka",
+    date: "2025-10-20",
+    text: "Rewelacyjne miejsce, pyszne jabłka, muzyka na żywo. Idealny pomysł na aktywną niedzielę.",
+  },
+  {
+    name: "Janusz Koliński",
+    date: "2023-02-20",
+    text: "Wspaniałe miejsce dla małych i dużych smakoszy jabłka. Kwitnące sady i zapierający w piersiach widok na panoramę miasta.",
+  },
+  {
+    name: "Krzysztof Kempa",
+    date: "2021-10-30",
+    text: "Jabłkobranie to świetna przygoda dla maluchów. Przepiękne miejsce ze świetnym widokiem na Trzebnicę. Zbieranie jabłek zamienione w zabawę to był świetny pomysł!",
+  },
+  {
+    name: "Szymon Zięba",
+    date: "2023-03-10",
+    text: "Piękne, zdrowe, smaczne jabłka, soki i przetwory — wszystko uprawiane przez ludzi z pasją do natury! Polecam serdecznie!",
+  },
+  {
+    name: "Ania Meinhard",
+    date: "2025-02-15",
+    text: "Na Sady Celmerów trafiliśmy dzięki jabłkobraniu. Wspaniała atmosfera, pyszne jabłka, dzieci zadowolone. Bardzo polecam to cudowne miejsce!",
+  },
+  {
+    name: "Michał Górski",
+    date: "2019-02-20",
+    text: "Przepyszne soki i jabłka (najlepsze jakie jadłem), różne odmiany — nie ma nudy! I wspaniali ludzie z pasją do tego co robią.",
+  },
+  {
+    name: "Alicja Śmiertka",
+    date: "2019-03-15",
+    text: "Miła obsługa i wysoka jakość produktów sprawiły, że nie wyobrażam sobie zaopatrywać się w jabłka i soki z nich gdzie indziej.",
+  },
+  {
+    name: "Kamil Snowacki",
+    date: "2023-04-05",
+    text: "Super jabłka! Świeże i zdrowe!",
+  },
+];
+
 /* ─── Gallery ───────────────────────────────────────────────── */
 
 export interface GalleryPhoto {
