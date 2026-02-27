@@ -83,20 +83,20 @@ export default function Reviews() {
 
   return (
     <section className="section-padding bg-cream-50">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading>Opinie naszych klientów</SectionHeading>
-        <p className="-mt-6 mb-10 text-center text-neutral-500 md:-mt-10 md:mb-12">
-          Sprawdź, co mówią o nas na{" "}
-          <a
-            href="https://maps.app.goo.gl/wqhpFznwqihPggFJ8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-sage-600 underline decoration-sage-300 underline-offset-2 transition-colors hover:text-sage-800"
-          >
-            Google Maps
-          </a>
-        </p>
+      <SectionHeading>Opinie naszych klientów</SectionHeading>
+      <p className="-mt-6 mb-10 text-center text-neutral-500 md:-mt-10 md:mb-12">
+        Sprawdź, co mówią o nas na{" "}
+        <a
+          href="https://maps.app.goo.gl/wqhpFznwqihPggFJ8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-sage-600 underline decoration-sage-300 underline-offset-2 transition-colors hover:text-sage-800"
+        >
+          Google Maps
+        </a>
+      </p>
 
+      <div className="mx-auto max-w-7xl">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {selected.map((review, i) => (
             <motion.div
