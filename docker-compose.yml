@@ -5,5 +5,8 @@ services:
     ports:
       - '3003:3000'
     restart: unless-stopped
+    env_file:
+      - path: .env.local
+        required: false
     environment:
       - NODE_ENV=production
