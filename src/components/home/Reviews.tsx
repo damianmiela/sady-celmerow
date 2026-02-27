@@ -125,7 +125,7 @@ export default function Reviews() {
                   {getInitial(review.name)}
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate text-[0.9rem] font-semibold text-neutral-800">
+                  <p className="truncate text-base font-semibold text-neutral-800">
                     {review.name}
                   </p>
                   <div className="flex items-center gap-2">
