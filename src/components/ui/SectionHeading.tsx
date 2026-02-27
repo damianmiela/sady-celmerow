@@ -19,7 +19,7 @@ export default function SectionHeading({
       transition={{ duration: 0.6 }}
       className={`mb-10 text-center md:mb-14 ${className}`}
     >
-      <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+      <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6">
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
