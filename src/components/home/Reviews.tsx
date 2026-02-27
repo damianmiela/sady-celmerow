@@ -75,7 +75,7 @@ export default function Reviews() {
   const [selected, setSelected] = useState<Review[]>([]);
 
   useEffect(() => {
-    setSelected(pickRandom(reviews, 5));
+    setSelected(pickRandom(reviews, 4));
   }, []);
 
   if (selected.length === 0) return null;
@@ -108,7 +108,7 @@ export default function Reviews() {
           </div>
         </motion.div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {selected.map((review, i) => (
             <motion.div
               key={review.name}
