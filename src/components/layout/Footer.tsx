@@ -9,7 +9,6 @@ import {
   MapPin,
   Mail,
   Facebook,
-  ExternalLink,
 } from "lucide-react";
 import { siteConfig, navLinks } from "@/lib/data";
 
@@ -129,16 +128,22 @@ export default function Footer() {
           <span>
             &copy; {year} {siteConfig.name}. Wszelkie prawa zastrzeżone.
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             Realizacja:{" "}
             <a
               href="https://www.dendigital.de"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-cream-200 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 font-medium text-cream-200 transition-colors hover:text-white"
             >
-              DEN Digital
-              <ExternalLink size={10} />
+              <span style={{ color: "#cadb2b" }}>DEN</span> Digital
+              <Image
+                src="/images/dendigital-logo.png"
+                alt="DEN Digital"
+                width={100}
+                height={50}
+                className="h-[50px] w-auto"
+              />
             </a>
           </span>
         </div>
