@@ -28,9 +28,9 @@ export default function Hero() {
           <Image
             src="/images/logo-512.png"
             alt="Sady Celmerów"
-            width={280}
-            height={120}
-            className="mx-auto mb-8 h-40 w-auto drop-shadow-[0_8px_30px_rgba(0,0,0,0.5)] sm:h-52 md:h-64"
+            width={420}
+            height={180}
+            className="mx-auto mb-8 h-60 w-auto drop-shadow-[0_8px_40px_rgba(0,0,0,0.75)] sm:h-[312px] md:h-96"
           />
         </motion.div>
 
