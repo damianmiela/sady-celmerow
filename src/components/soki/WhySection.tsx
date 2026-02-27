@@ -83,7 +83,7 @@ export default function WhySection() {
       <SectionHeading>Dlaczego nasze soki są takie dobre?</SectionHeading>
 
       {/* Mobile: vertical card list */}
-      <div className="mx-auto mb-14 flex max-w-md flex-col gap-2 md:hidden">
+      <div className="mx-auto mb-14 flex max-w-md flex-col gap-2 min-[930px]:hidden">
         {qualities.map((q, i) => {
           const Icon = q.icon;
           return (
@@ -108,7 +108,7 @@ export default function WhySection() {
       </div>
 
       {/* Desktop: 5-column grid */}
-      <div className="mx-auto mb-14 hidden max-w-4xl grid-cols-5 gap-4 md:grid">
+      <div className="mx-auto mb-14 hidden max-w-4xl grid-cols-5 gap-4 min-[930px]:grid">
         {qualities.map((q, i) => {
           const Icon = q.icon;
           return (

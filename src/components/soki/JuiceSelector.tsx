@@ -23,7 +23,7 @@ export default function JuiceSelector() {
 
   const selectJuice = useCallback((id: number) => {
     setActiveId(id);
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 930) {
       heroRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, []);
@@ -48,12 +48,12 @@ export default function JuiceSelector() {
     <>
       <div className="mx-auto max-w-6xl">
         {/* Main display */}
-        <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
+        <div className="flex flex-col items-center gap-8 min-[930px]:flex-row min-[930px]:gap-12">
           {/* Juice image — clickable for fullscreen */}
           <button
             ref={heroRef}
             onClick={() => setLightboxOpen(true)}
-            className="group relative h-72 w-72 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg transition-shadow hover:shadow-xl md:h-80 md:w-80"
+            className="group relative h-72 w-72 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg transition-shadow hover:shadow-xl min-[930px]:h-80 min-[930px]:w-80"
             aria-label="Powiększ zdjęcie"
           >
             <AnimatePresence mode="wait">
@@ -92,7 +92,7 @@ export default function JuiceSelector() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="font-serif text-2xl font-bold text-sage-700 md:text-3xl">
+                <h3 className="font-serif text-2xl font-bold text-sage-700 min-[930px]:text-3xl">
                   {active.name}
                 </h3>
                 <p className="mt-4 leading-relaxed text-neutral-600">
@@ -103,8 +103,8 @@ export default function JuiceSelector() {
           </div>
         </div>
 
-        {/* Mobile: vertical card list */}
-        <div className="mt-8 flex flex-col gap-2 md:hidden">
+        {/* Card list: 1 col → 2 cols at 500px → hidden at 930px */}
+        <div className="mt-8 grid grid-cols-1 gap-2 min-[500px]:grid-cols-2 min-[930px]:hidden">
           {juices.map((juice) => (
             <button
               key={juice.id}
@@ -138,7 +138,7 @@ export default function JuiceSelector() {
         </div>
 
         {/* Desktop: thumbnail grid */}
-        <div className="mt-10 hidden flex-wrap justify-center gap-4 md:flex">
+        <div className="mt-10 hidden flex-wrap justify-center gap-4 min-[930px]:flex">
           {juices.map((juice) => (
             <button
               key={juice.id}
