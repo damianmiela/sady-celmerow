@@ -5,7 +5,7 @@ import ContactForm from "@/components/kontakt/ContactForm";
 import { ContactDetails, ContactMap } from "@/components/kontakt/ContactInfo";
 
 export const metadata: Metadata = {
-  title: "Kontakt — Jak Do Nas Trafić",
+  title: "Kontakt | Sady Celmerów",
   description:
     "Skontaktuj się z Sadami Celmerów. Adres: ul. Obornicka 18, 55-100 Trzebnica. Sprzedaż jabłek, soków i przetworów. Telefon, e-mail, formularz kontaktowy.",
   alternates: { canonical: "https://sadycelmerow.pl/kontakt" },

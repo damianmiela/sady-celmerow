@@ -4,7 +4,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import GalleryGrid from "@/components/galeria/GalleryGrid";
 
 export const metadata: Metadata = {
-  title: "Galeria Zdjęć — Sad, Jabłka i Przyroda",
+  title: "Galeria zdjęć | Sady Celmerów",
   description:
     "Galeria zdjęć z Sadów Celmerów w Trzebnicy. Jabłonie, zbiory owoców, soki tłoczone, przyroda i piękno wzgórz Trzebnickich. Zobacz nasze gospodarstwo!",
   alternates: { canonical: "https://sadycelmerow.pl/galeria" },
