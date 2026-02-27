@@ -5,7 +5,7 @@ import OdmianyContent from "@/components/odmiany/OdmianyContent";
 export const metadata: Metadata = {
   title: "Odmiany jabłek | Sady Celmerów",
   description:
-    "Poznaj odmiany jabłek uprawianych w Sadach Celmerów. Szampion, Ligol, Jonagold, Golden Delicious i inne — specjalnie dobrane dla najlepszego smaku.",
+    "Poznaj 10 odmian jabłek uprawianych w Sadach Celmerów. Topaz, Rubinola, Szampion, Golden Delicious i inne — specjalnie dobrane dla najlepszego smaku.",
   alternates: { canonical: "https://sadycelmerow.pl/odmiany" },
 };
 

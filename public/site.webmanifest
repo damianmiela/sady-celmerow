@@ -1,14 +1,28 @@
 {
-    "name": "Sady Celmer\u00f3w",
-    "short_name": "Sady Celmer\u00f3w",
-    "icons": [
-        {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#eee7dc",
-    "background_color": "#eee7dc",
-    "display": "standalone"
+  "name": "Sady Celmerów — Rodzinne Gospodarstwo Sadownicze",
+  "short_name": "Sady Celmerów",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#eee7dc",
+  "background_color": "#eee7dc",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
