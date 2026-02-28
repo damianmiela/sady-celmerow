@@ -3,7 +3,7 @@ import { TreePine } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 pt-24 text-center md:pt-32">
       <TreePine size={64} className="mb-6 text-sage-400" />
       <h1 className="font-serif text-5xl font-bold text-sage-700">404</h1>
       <p className="mt-3 text-lg text-neutral-600">
