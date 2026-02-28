@@ -3,36 +3,24 @@
 import { useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
-
-const images = [
-  { src: "/images/gallery/czerwone-jablka.jpg", alt: "Czerwone jabłka" },
-  {
-    src: "/images/gallery/produkty-wystawa.jpg",
-    alt: "Produkty Sady Celmerów",
-  },
-  {
-    src: "/images/gallery/pszczola-na-kwiecie.jpg",
-    alt: "Pszczoła na kwiecie",
-  },
-  { src: "/images/hero/big-photo3.jpg", alt: "Sad jabłoniowy" },
-  { src: "/images/gallery/sad-jablonie.jpg", alt: "Jabłonie w sadzie" },
-  { src: "/images/gallery/ptasie-gniazdo.jpg", alt: "Ptasie gniazdo" },
-  { src: "/images/odmiany/topaz.jpg", alt: "Jabłko Topaz" },
-  { src: "/images/gallery/sarenka-w-sadzie.jpg", alt: "Sarenka w sadzie" },
-];
+import { galleryPhotos } from "@/lib/data";
 
 export default function InfiniteMarquee() {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  const allImages = useMemo(() => [...images, ...images], []);
+  const images = useMemo(
+    () => galleryPhotos.map((p) => ({ src: p.src, alt: p.alt })),
+    [],
+  );
+  const allImages = useMemo(() => [...images, ...images], [images]);
 
   const handlePrev = useCallback(() => {
     setLightboxIndex((i) => (i <= 0 ? images.length - 1 : i - 1));
-  }, []);
+  }, [images.length]);
 
   const handleNext = useCallback(() => {
     setLightboxIndex((i) => (i >= images.length - 1 ? 0 : i + 1));
-  }, []);
+  }, [images.length]);
 
   return (
     <section className="overflow-hidden bg-sage-800 py-8">
