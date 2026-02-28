@@ -17,7 +17,7 @@ export default function SpotkajNasPage() {
         imageSrc="/images/hero/hero-spotkaj-nas.jpg"
         alt="Spotkaj Sady Celmerów"
         blurDataURL={heroBlur["/images/hero/hero-spotkaj-nas.jpg"]}
-        objectPosition="50% 25%"
+        objectPosition="center"
       />
       <SpotkajNasContent />
     </>
