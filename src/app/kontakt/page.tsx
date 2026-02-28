@@ -3,6 +3,7 @@ import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/components/kontakt/ContactForm";
 import { ContactDetails, ContactMap } from "@/components/kontakt/ContactInfo";
+import { heroBlur } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Kontakt | Sady Celmerów",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function KontaktPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/hero-kontakt.jpg" alt="Kontakt z Sadami Celmerów — sad jesienią" />
+      <PageHero imageSrc="/images/hero/hero-kontakt.jpg" alt="Kontakt z Sadami Celmerów — sad jesienią" blurDataURL={heroBlur["/images/hero/hero-kontakt.jpg"]} objectPosition="top" />
 
       <section className="section-padding bg-cream-50">
         <SectionHeading>Skontaktuj się z nami!</SectionHeading>

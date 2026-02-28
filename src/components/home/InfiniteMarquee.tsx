@@ -5,6 +5,8 @@ import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 import { galleryPhotos } from "@/lib/data";
 
+const SECONDS_PER_IMAGE = 3.5;
+
 export default function InfiniteMarquee() {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
@@ -13,6 +15,7 @@ export default function InfiniteMarquee() {
     [],
   );
   const allImages = useMemo(() => [...images, ...images], [images]);
+  const duration = images.length * SECONDS_PER_IMAGE;
 
   const handlePrev = useCallback(() => {
     setLightboxIndex((i) => (i <= 0 ? images.length - 1 : i - 1));
@@ -24,7 +27,10 @@ export default function InfiniteMarquee() {
 
   return (
     <section className="overflow-hidden bg-sage-800 py-8">
-      <div className="animate-marquee flex w-max gap-4">
+      <div
+        className="marquee-strip flex w-max gap-4"
+        style={{ animationDuration: `${duration}s` }}
+      >
         {allImages.map((img, i) => (
           <button
             key={`${img.src}-${i}`}

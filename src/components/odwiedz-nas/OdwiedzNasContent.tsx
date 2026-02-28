@@ -170,21 +170,6 @@ export default function SpotkajNasContent() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mx-auto mt-6 max-w-md overflow-hidden rounded-2xl shadow-md"
-          >
-            <Image
-              src="/images/gallery/bazar-smakoszy-02.jpg"
-              alt="Stoisko Sadów Celmerów na bazarze"
-              width={600}
-              height={400}
-              className="h-56 w-full object-cover sm:h-64"
-            />
-          </motion.div>
         </div>
       </section>
 

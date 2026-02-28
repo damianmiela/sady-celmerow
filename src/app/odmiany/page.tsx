@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import OdmianyContent from "@/components/odmiany/OdmianyContent";
+import { heroBlur } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Odmiany jabłek | Sady Celmerów",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function OdmianyPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/hero-odmiany.jpg" alt="Odmiany jabłek uprawiane w Sadach Celmerów" />
+      <PageHero imageSrc="/images/hero/hero-odmiany.jpg" alt="Odmiany jabłek uprawiane w Sadach Celmerów" blurDataURL={heroBlur["/images/hero/hero-odmiany.jpg"]} />
       <OdmianyContent />
     </>
   );

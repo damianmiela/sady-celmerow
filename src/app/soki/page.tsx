@@ -3,6 +3,7 @@ import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import JuiceSelector from "@/components/soki/JuiceSelector";
 import WhySection from "@/components/soki/WhySection";
+import { heroBlur } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Nasze soki | Sady Celmerów",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function SokiPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/big-photo1.jpg" alt="Naturalne soki jabłkowe z Sadów Celmerów" />
+      <PageHero imageSrc="/images/hero/big-photo1.jpg" alt="Naturalne soki jabłkowe z Sadów Celmerów" blurDataURL={heroBlur["/images/hero/big-photo1.jpg"]} />
 
       <section className="section-padding bg-cream-50">
         <SectionHeading>Nasze soki</SectionHeading>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import SpotkajNasContent from "@/components/odwiedz-nas/OdwiedzNasContent";
+import { heroBlur } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Spotkaj nas | Sady Celmerów",
@@ -15,6 +16,8 @@ export default function SpotkajNasPage() {
       <PageHero
         imageSrc="/images/hero/hero-spotkaj-nas.jpg"
         alt="Spotkaj Sady Celmerów"
+        blurDataURL={heroBlur["/images/hero/hero-spotkaj-nas.jpg"]}
+        objectPosition="top"
       />
       <SpotkajNasContent />
     </>

@@ -47,11 +47,13 @@
   }
 }
 
-.animate-marquee {
-  animation: marquee 40s linear infinite;
+.marquee-strip {
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.animate-marquee:hover {
+.marquee-strip:hover {
   animation-play-state: paused;
 }
 
