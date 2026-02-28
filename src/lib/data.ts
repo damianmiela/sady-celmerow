@@ -21,6 +21,7 @@ export const navLinks = [
   { label: "Strona główna", href: "/" },
   { label: "Soki", href: "/soki" },
   { label: "Odmiany jabłek", href: "/odmiany" },
+  { label: "Odwiedź nas", href: "/odwiedz-nas" },
   { label: "Galeria", href: "/galeria" },
   { label: "Kontakt", href: "/kontakt" },
 ];
@@ -128,6 +129,7 @@ export const aboutText = [
 export interface AppleVariety {
   name: string;
   image: string;
+  placeholder?: boolean;
 }
 
 export const appleVarieties: AppleVariety[] = [
@@ -135,16 +137,16 @@ export const appleVarieties: AppleVariety[] = [
   { name: "Rubinola", image: "/images/odmiany/rubinola.jpg" },
   { name: "Golden Delicious", image: "/images/odmiany/golden-delicious.jpg" },
   { name: "Rubin", image: "/images/odmiany/rubin.jpg" },
-  { name: "Szampion", image: "/images/odmiany/szampion.jpg" },
   { name: "Rubinstar", image: "/images/odmiany/rubinstar.jpg" },
-  { name: "Melrose", image: "/images/odmiany/melrose.jpg" },
-  { name: "Elstar", image: "/images/odmiany/elstar.jpg" },
-  { name: "Gloster", image: "/images/odmiany/gloster.jpg" },
-  { name: "Cortland", image: "/images/odmiany/cortland.jpg" },
+  {
+    name: "Red Jonaprince Select",
+    image: "/images/odmiany/red-jonaprince-select.jpg",
+    placeholder: true,
+  },
 ];
 
 export const varietiesText = [
-  "Obecnie uprawiamy 12 odmian jabłek a naszą specjalnością są takie rarytasy jak: Topaz i Rubinola. Od wielu lat uczestniczymy w systemie Integrowanej Produkcji. Program ten to kompromis pomiędzy ekologią, a uprawą konwencjonalną. Co roku staramy się o Certyfikat Integrowanej Produkcji, który gwarantuje, że jabłka są zdrowe i brak w nich groźnych dla konsumentów pozostałości pestycydów.",
+  "Specjalizujemy się w uprawie 6 starannie dobranych odmian jabłek, wśród których znajdziemy takie rarytasy jak Topaz, Rubinola czy Red Jonaprince Select. Od wielu lat uczestniczymy w systemie Integrowanej Produkcji. Program ten to kompromis pomiędzy ekologią, a uprawą konwencjonalną. Co roku staramy się o Certyfikat Integrowanej Produkcji, który gwarantuje, że jabłka są zdrowe i brak w nich groźnych dla konsumentów pozostałości pestycydów.",
   "Dążymy do tego, aby środki ochrony roślin były stosowane z umiarem, a w sadzie panowała równowaga biologiczna. W naszych sadach znajdziemy mnóstwo biedronek, pająków, skorków i dobroczynków. Na drzewach zauważyć można gniazda ptaków. Sady odwiedzają też sarny, borsuki, lisy, zające i bażanty. I zupełnie nam to nie przeszkadza:)",
 ];
 

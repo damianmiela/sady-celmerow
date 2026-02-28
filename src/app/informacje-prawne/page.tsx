@@ -26,11 +26,11 @@ export default function InformacjePrawnePage() {
           <div className="mt-6 space-y-1 text-neutral-700">
             <p>
               <span className="font-medium text-neutral-500">NIP:</span>{" "}
-              XXX-XXX-XX-XX
+              915 174 33 82
             </p>
             <p>
               <span className="font-medium text-neutral-500">REGON:</span>{" "}
-              XXXXXXXXX
+              360247724
             </p>
           </div>
 

@@ -36,7 +36,7 @@ export default function OdmianyContent() {
           ))}
         </AnimatedSection>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6">
           {appleVarieties.map((variety, i) => (
             <AppleCard
               key={variety.name}
