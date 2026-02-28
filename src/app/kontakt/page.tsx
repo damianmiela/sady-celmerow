@@ -21,13 +21,6 @@ export default function KontaktPage() {
 
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
           <div>
-            <h3 className="mb-6 text-lg font-semibold tracking-tight text-sage-700">
-              Formularz kontaktowy
-            </h3>
-            <ContactForm />
-          </div>
-
-          <div>
             <h3 className="mb-6 text-center text-lg font-semibold tracking-tight text-sage-700">
               Dane kontaktowe
             </h3>
@@ -35,6 +28,13 @@ export default function KontaktPage() {
             <div className="mt-8">
               <ContactMap />
             </div>
+          </div>
+
+          <div>
+            <h3 className="mb-6 text-lg font-semibold tracking-tight text-sage-700">
+              Formularz kontaktowy
+            </h3>
+            <ContactForm />
           </div>
         </div>
       </section>
