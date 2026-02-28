@@ -108,14 +108,14 @@ export default function SpotkajNasContent() {
 
           {/* Mini gallery */}
           <div className="mt-8 grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-7">
-            {jablkobraniePhotos.slice(1).map((photo, i) => (
+            {[...jablkobraniePhotos.slice(1), jablkobraniePhotos[0]].map((photo) => (
               <motion.button
                 key={photo.src}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: Math.min(i * 0.04, 0.5) }}
-                onClick={() => setLightboxIndex(i + 1)}
+                transition={{ duration: 0.3, delay: 0.05 }}
+                onClick={() => setLightboxIndex(jablkobraniePhotos.indexOf(photo))}
                 className="group relative aspect-square overflow-hidden rounded-lg shadow-sm transition-shadow hover:shadow-md"
               >
                 <Image
