@@ -19,24 +19,33 @@ export default function PageHero({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <section className="relative h-[32vh] min-h-[220px] overflow-hidden md:h-[40vh]">
-      <Image
-        src={imageSrc}
-        alt={alt}
-        fill
-        className={`object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
-        style={{ objectPosition }}
-        priority
-        sizes="100vw"
-        placeholder={blurDataURL ? "blur" : undefined}
-        blurDataURL={blurDataURL}
-        onLoad={() => setLoaded(true)}
-      />
-      <div className="absolute inset-0 bg-black/30" />
+    <>
+      <section className="relative h-[32vh] min-h-[220px] overflow-hidden md:h-[40vh]">
+        <Image
+          src={imageSrc}
+          alt={alt}
+          fill
+          className={`object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+          style={{ objectPosition }}
+          priority
+          sizes="100vw"
+          placeholder={blurDataURL ? "blur" : undefined}
+          blurDataURL={blurDataURL}
+          onLoad={() => setLoaded(true)}
+        />
+        <div className="absolute inset-0 bg-black/30" />
+
+        {!loaded && (
+          <div className="absolute inset-0 animate-pulse bg-sage-200" />
+        )}
+      </section>
 
       {!loaded && (
-        <div className="absolute inset-0 animate-pulse bg-sage-200" />
+        <div
+          className="fixed inset-x-0 bottom-0 z-30 bg-cream-50"
+          style={{ top: "min(32vh, calc(100vh - 220px))" }}
+        />
       )}
-    </section>
+    </>
   );
 }
