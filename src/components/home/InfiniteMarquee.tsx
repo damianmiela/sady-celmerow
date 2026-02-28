@@ -9,7 +9,7 @@ export default function InfiniteMarquee() {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
   const images = useMemo(
-    () => galleryPhotos.map((p) => ({ src: p.src, alt: p.alt })),
+    () => galleryPhotos.map((p) => ({ src: p.src, thumb: p.thumb, alt: p.alt })),
     [],
   );
   const allImages = useMemo(() => [...images, ...images], [images]);
@@ -33,7 +33,7 @@ export default function InfiniteMarquee() {
             className="relative h-48 w-72 flex-shrink-0 cursor-pointer overflow-hidden rounded-xl md:h-56 md:w-80"
           >
             <Image
-              src={img.src}
+              src={img.thumb}
               alt={img.alt}
               fill
               className="object-cover transition-transform duration-300 hover:scale-105"

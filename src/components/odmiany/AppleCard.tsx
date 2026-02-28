@@ -28,7 +28,7 @@ export default function AppleCard({ variety, index, onClick }: AppleCardProps) {
           </div>
         ) : (
           <Image
-            src={variety.image}
+            src={variety.thumb}
             alt={variety.name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"

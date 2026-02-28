@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function KontaktPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/big-photo2.jpg" alt="Kontakt z Sadami Celmerów — sad jabłoniowy" />
+      <PageHero imageSrc="/images/hero/hero-kontakt.jpg" alt="Kontakt z Sadami Celmerów — sad jesienią" />
 
       <section className="section-padding bg-cream-50">
         <SectionHeading>Skontaktuj się z nami!</SectionHeading>

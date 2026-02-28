@@ -116,7 +116,7 @@ export default function GalleryGrid() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: i * 0.03 }}
+            transition={{ duration: 0.3, delay: Math.min(i * 0.03, 0.6) }}
             onClick={() => setLightboxIndex(i)}
             className={`group relative aspect-square overflow-hidden rounded-lg transition-all ${
               i === selectedSnap
@@ -125,7 +125,7 @@ export default function GalleryGrid() {
             }`}
           >
             <Image
-              src={photo.src}
+              src={photo.thumb}
               alt={photo.alt}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"

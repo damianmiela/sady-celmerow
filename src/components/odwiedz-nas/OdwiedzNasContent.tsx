@@ -1,15 +1,52 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Facebook } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SalesMap from "@/components/odwiedz-nas/SalesMap";
+import Lightbox from "@/components/ui/Lightbox";
 import { siteConfig } from "@/lib/data";
 
+const jablkobraniePhotos = [
+  { src: "/images/gallery/jablkobranie-glowne.jpg", thumb: "/images/gallery/jablkobranie-glowne-thumb.jpg", alt: "Jabłkobranie u Celmerów — zbiory" },
+  { src: "/images/gallery/jablkobranie-01.jpg", thumb: "/images/gallery/jablkobranie-01-thumb.jpg", alt: "Jabłkobranie — letni sad" },
+  { src: "/images/gallery/jablkobranie-02.jpg", thumb: "/images/gallery/jablkobranie-02-thumb.jpg", alt: "Jabłkobranie — kosze pełne jabłek" },
+  { src: "/images/gallery/jablkobranie-03.jpg", thumb: "/images/gallery/jablkobranie-03-thumb.jpg", alt: "Jabłkobranie — rodzinna zabawa" },
+  { src: "/images/gallery/jablkobranie-04.jpg", thumb: "/images/gallery/jablkobranie-04-thumb.jpg", alt: "Jabłkobranie — zbiory październikowe" },
+  { src: "/images/gallery/jablkobranie-05.jpg", thumb: "/images/gallery/jablkobranie-05-thumb.jpg", alt: "Jabłkobranie — degustacja" },
+  { src: "/images/gallery/jablkobranie-06.jpg", thumb: "/images/gallery/jablkobranie-06-thumb.jpg", alt: "Jabłkobranie — jabłka na drzewach" },
+  { src: "/images/gallery/jablkobranie-07.jpg", thumb: "/images/gallery/jablkobranie-07-thumb.jpg", alt: "Jabłkobranie — wiosenne przygotowania" },
+  { src: "/images/gallery/jablkobranie-08.jpg", thumb: "/images/gallery/jablkobranie-08-thumb.jpg", alt: "Jabłkobranie — sad pełen jabłek" },
+  { src: "/images/gallery/jablkobranie-09.jpg", thumb: "/images/gallery/jablkobranie-09-thumb.jpg", alt: "Jabłkobranie — dojrzałe owoce" },
+  { src: "/images/gallery/jablkobranie-10.jpg", thumb: "/images/gallery/jablkobranie-10-thumb.jpg", alt: "Jabłkobranie — zachód słońca" },
+  { src: "/images/gallery/jablkobranie-11.jpg", thumb: "/images/gallery/jablkobranie-11-thumb.jpg", alt: "Jabłkobranie — świeżo zebrane jabłka" },
+  { src: "/images/gallery/jablkobranie-12.jpg", thumb: "/images/gallery/jablkobranie-12-thumb.jpg", alt: "Jabłkobranie — ostatnie zbiory" },
+  { src: "/images/gallery/jablkobranie-plakat.jpg", thumb: "/images/gallery/jablkobranie-plakat-thumb.jpg", alt: "Jabłkobranie — plakat wydarzenia" },
+];
+
+const lightboxImages = jablkobraniePhotos.map((p) => ({
+  src: p.src,
+  alt: p.alt,
+}));
+
 export default function SpotkajNasContent() {
+  const [lightboxIndex, setLightboxIndex] = useState(-1);
+
+  const handlePrev = useCallback(() => {
+    setLightboxIndex((i) =>
+      i <= 0 ? jablkobraniePhotos.length - 1 : i - 1,
+    );
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setLightboxIndex((i) =>
+      i >= jablkobraniePhotos.length - 1 ? 0 : i + 1,
+    );
+  }, []);
+
   return (
     <>
       {/* ── Jabłkobranie ─────────────────────────────────── */}
@@ -56,16 +93,41 @@ export default function SpotkajNasContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.5 }}
-              className="w-full flex-shrink-0 overflow-hidden rounded-2xl shadow-md md:w-[45%]"
+              className="w-full flex-shrink-0 cursor-pointer overflow-hidden rounded-2xl shadow-md md:w-[45%]"
+              onClick={() => setLightboxIndex(0)}
             >
               <Image
-                src="/images/gallery/produkty-w-sadzie.jpg"
-                alt="Produkty w sadzie podczas Jabłkobrania"
-                width={600}
-                height={400}
+                src="/images/gallery/jablkobranie-glowne.jpg"
+                alt="Jabłkobranie u Celmerów — główne zdjęcie"
+                width={800}
+                height={600}
                 className="h-64 w-full object-cover sm:h-80"
               />
             </motion.div>
+          </div>
+
+          {/* Mini gallery */}
+          <div className="mt-8 grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-7">
+            {jablkobraniePhotos.slice(1).map((photo, i) => (
+              <motion.button
+                key={photo.src}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: Math.min(i * 0.04, 0.5) }}
+                onClick={() => setLightboxIndex(i + 1)}
+                className="group relative aspect-square overflow-hidden rounded-lg shadow-sm transition-shadow hover:shadow-md"
+              >
+                <Image
+                  src={photo.thumb}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 14vw"
+                />
+                <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
+              </motion.button>
+            ))}
           </div>
         </div>
       </section>
@@ -99,14 +161,30 @@ export default function SpotkajNasContent() {
               className="w-full flex-shrink-0 overflow-hidden rounded-2xl shadow-md md:w-[45%]"
             >
               <Image
-                src="/images/gallery/produkty-wystawa.jpg"
-                alt="Wystawa produktów z Sadów Celmerów"
+                src="/images/gallery/bazar-smakoszy-01.jpg"
+                alt="Bazar Smakoszy we Wrocławiu"
                 width={600}
                 height={400}
                 className="h-64 w-full object-cover sm:h-80"
               />
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mx-auto mt-6 max-w-md overflow-hidden rounded-2xl shadow-md"
+          >
+            <Image
+              src="/images/gallery/bazar-smakoszy-02.jpg"
+              alt="Stoisko Sadów Celmerów na bazarze"
+              width={600}
+              height={400}
+              className="h-56 w-full object-cover sm:h-64"
+            />
+          </motion.div>
         </div>
       </section>
 
@@ -126,6 +204,15 @@ export default function SpotkajNasContent() {
           <SalesMap />
         </div>
       </section>
+
+      <Lightbox
+        images={lightboxImages}
+        currentIndex={lightboxIndex}
+        isOpen={lightboxIndex >= 0}
+        onClose={() => setLightboxIndex(-1)}
+        onPrev={handlePrev}
+        onNext={handleNext}
+      />
     </>
   );
 }

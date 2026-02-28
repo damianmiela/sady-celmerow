@@ -13,7 +13,7 @@ export default function SpotkajNasPage() {
   return (
     <>
       <PageHero
-        imageSrc="/images/hero/big-photo1.jpg"
+        imageSrc="/images/hero/hero-spotkaj-nas.jpg"
         alt="Spotkaj Sady Celmerów"
       />
       <SpotkajNasContent />

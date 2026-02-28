@@ -129,18 +129,20 @@ export const aboutText = [
 export interface AppleVariety {
   name: string;
   image: string;
+  thumb: string;
   placeholder?: boolean;
 }
 
 export const appleVarieties: AppleVariety[] = [
-  { name: "Topaz", image: "/images/odmiany/topaz.jpg" },
-  { name: "Rubinola", image: "/images/odmiany/rubinola.jpg" },
-  { name: "Golden Delicious", image: "/images/odmiany/golden-delicious.jpg" },
-  { name: "Rubin", image: "/images/odmiany/rubin.jpg" },
-  { name: "Rubinstar", image: "/images/odmiany/rubinstar.jpg" },
+  { name: "Topaz", image: "/images/odmiany/topaz.jpg", thumb: "/images/odmiany/topaz-thumb.jpg" },
+  { name: "Rubinola", image: "/images/odmiany/rubinola.jpg", thumb: "/images/odmiany/rubinola-thumb.jpg" },
+  { name: "Golden Delicious", image: "/images/odmiany/golden-delicious.jpg", thumb: "/images/odmiany/golden-delicious-thumb.jpg" },
+  { name: "Rubin", image: "/images/odmiany/rubin.jpg", thumb: "/images/odmiany/rubin-thumb.jpg" },
+  { name: "Rubinstar", image: "/images/odmiany/rubinstar.jpg", thumb: "/images/odmiany/rubinstar-thumb.jpg" },
   {
     name: "Red Jonaprince Select",
     image: "/images/odmiany/red-jonaprince-select.jpg",
+    thumb: "/images/odmiany/red-jonaprince-select.jpg",
     placeholder: true,
   },
 ];
@@ -215,69 +217,62 @@ export const reviews: Review[] = [
 
 export interface GalleryPhoto {
   src: string;
+  thumb: string;
   alt: string;
-  category: "sad" | "produkty" | "przyroda";
+  category: "sad" | "produkty" | "przyroda" | "jablkobranie" | "bazar";
 }
 
+const g = (name: string, alt: string, category: GalleryPhoto["category"]): GalleryPhoto => ({
+  src: `/images/gallery/${name}.jpg`,
+  thumb: `/images/gallery/${name}-thumb.jpg`,
+  alt,
+  category,
+});
+
 export const galleryPhotos: GalleryPhoto[] = [
-  {
-    src: "/images/gallery/sad-jablonie.jpg",
-    alt: "Jabłonie w sadzie",
-    category: "sad",
-  },
-  {
-    src: "/images/gallery/jablka-na-drzewie.jpg",
-    alt: "Jabłka na drzewie",
-    category: "sad",
-  },
-  {
-    src: "/images/gallery/jablka-zblizenie.jpg",
-    alt: "Jabłka — zbliżenie",
-    category: "sad",
-  },
-  {
-    src: "/images/gallery/odmiany-na-galezi.jpg",
-    alt: "Odmiany jabłek na gałęzi",
-    category: "sad",
-  },
-  {
-    src: "/images/gallery/czerwone-jablka.jpg",
-    alt: "Czerwone jabłka w słońcu",
-    category: "sad",
-  },
-  {
-    src: "/images/gallery/pszczola-na-kwiecie.jpg",
-    alt: "Pszczoła miodna na kwiecie jabłoni",
-    category: "przyroda",
-  },
-  {
-    src: "/images/gallery/produkty-w-sadzie.jpg",
-    alt: "Produkty Sady Celmerów w sadzie",
-    category: "produkty",
-  },
-  {
-    src: "/images/gallery/produkty-wystawa.jpg",
-    alt: "Wystawa produktów z jabłkami",
-    category: "produkty",
-  },
-  {
-    src: "/images/gallery/sok-jablkowy-produkt.jpg",
-    alt: "Sok jabłkowy — karton i butelka",
-    category: "produkty",
-  },
-  {
-    src: "/images/gallery/ptasie-gniazdo.jpg",
-    alt: "Ptasie gniazdo w jabłoni",
-    category: "przyroda",
-  },
-  {
-    src: "/images/gallery/sarenka-w-sadzie.jpg",
-    alt: "Sarenka w sadzie",
-    category: "przyroda",
-  },
-  {
-    src: "/images/gallery/sad-zima.jpg",
-    alt: "Sad zimą",
-    category: "sad",
-  },
+  g("jablkobranie-glowne", "Jabłkobranie u Celmerów — zbiory", "jablkobranie"),
+  g("sad-jablonie", "Jabłonie w sadzie", "sad"),
+  g("sad-panorama", "Panorama sadu", "sad"),
+  g("jablka-na-drzewie", "Jabłka na drzewie", "sad"),
+  g("jablkobranie-08", "Jabłkobranie — sad pełen jabłek", "jablkobranie"),
+  g("bazar-smakoszy-01", "Bazar Smakoszy we Wrocławiu", "bazar"),
+  g("sad-kwitnacy", "Kwitnące jabłonie wiosną", "sad"),
+  g("jablka-zblizenie", "Jabłka — zbliżenie", "sad"),
+  g("sad-nowe-03", "Jabłonie wiosną w pełnym rozkwicie", "sad"),
+  g("jablkobranie-10", "Jabłkobranie — zachód słońca w sadzie", "jablkobranie"),
+  g("produkty-w-sadzie", "Produkty Sady Celmerów w sadzie", "produkty"),
+  g("sad-nowe-06", "Jabłka dojrzewające na gałęzi", "sad"),
+  g("odmiany-na-galezi", "Odmiany jabłek na gałęzi", "sad"),
+  g("jablkobranie-02", "Jabłkobranie — kosze pełne jabłek", "jablkobranie"),
+  g("bazar-smakoszy-02", "Stoisko Sadów Celmerów na bazarze", "bazar"),
+  g("sad-nowe-05", "Poranny sad w promieniach słońca", "sad"),
+  g("czerwone-jablka", "Czerwone jabłka w słońcu", "sad"),
+  g("jablkobranie-04", "Jabłkobranie — zbiory październikowe", "jablkobranie"),
+  g("sad-nowe-07", "Dojrzałe jabłka w sadzie", "sad"),
+  g("produkty-wystawa", "Wystawa produktów z jabłkami", "produkty"),
+  g("sad-nowe-01", "Sad Celmerów — widok ogólny", "sad"),
+  g("pszczola-na-kwiecie", "Pszczoła miodna na kwiecie jabłoni", "przyroda"),
+  g("jablkobranie-11", "Jabłkobranie — świeżo zebrane jabłka", "jablkobranie"),
+  g("sad-nowe-04", "Wieczór w sadzie", "sad"),
+  g("sok-jablkowy-produkt", "Sok jabłkowy — karton i butelka", "produkty"),
+  g("sad-nowe-08", "Jabłka gotowe do zbioru", "sad"),
+  g("jablkobranie-plakat", "Jabłkobranie — plakat wydarzenia", "jablkobranie"),
+  g("sad-nowe-02", "Sad Celmerów — drzewa jabłoni", "sad"),
+  g("ptasie-gniazdo", "Ptasie gniazdo w jabłoni", "przyroda"),
+  g("sad-nowe-09", "Jesień w sadzie jabłkowym", "sad"),
+  g("jablkobranie-03", "Jabłkobranie — rodzinna zabawa", "jablkobranie"),
+  g("sarenka-w-sadzie", "Sarenka w sadzie", "przyroda"),
+  g("sad-jesien", "Sad jesienią — złote liście", "sad"),
+  g("sad-nowe-10", "Jabłonie wieczorem", "sad"),
+  g("jablkobranie-05", "Jabłkobranie — degustacja", "jablkobranie"),
+  g("sad-nowe-11", "Zbiory jabłek w październiku", "sad"),
+  g("sad-zima", "Sad zimą", "sad"),
+  g("sad-zima-nowe", "Sad w zimowej szacie", "sad"),
+  g("sad-nowe-12", "Sad Celmerów zimą", "sad"),
+  g("sad-nowe-13", "Poranne przymrozki w sadzie", "sad"),
+  g("jablkobranie-06", "Jabłkobranie — jabłka na drzewach", "jablkobranie"),
+  g("jablkobranie-07", "Jabłkobranie — wiosenne przygotowania", "jablkobranie"),
+  g("jablkobranie-09", "Jabłkobranie — dojrzałe owoce", "jablkobranie"),
+  g("jablkobranie-12", "Jabłkobranie — ostatnie zbiory", "jablkobranie"),
+  g("jablkobranie-01", "Jabłkobranie — letni sad", "jablkobranie"),
 ];
