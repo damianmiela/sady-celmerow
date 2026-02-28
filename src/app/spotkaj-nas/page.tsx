@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
-import OdwiedzNasContent from "@/components/odwiedz-nas/OdwiedzNasContent";
+import SpotkajNasContent from "@/components/odwiedz-nas/OdwiedzNasContent";
 
 export const metadata: Metadata = {
-  title: "Odwiedź nas | Sady Celmerów",
+  title: "Spotkaj nas | Sady Celmerów",
   description:
     "Jabłkobranie, Bazar Smakoszy we Wrocławiu i punkty sprzedaży soków i jabłek z Sadów Celmerów. Sprawdź, gdzie nas spotkasz!",
-  alternates: { canonical: "https://sadycelmerow.pl/odwiedz-nas" },
+  alternates: { canonical: "https://sadycelmerow.pl/spotkaj-nas" },
 };
 
-export default function OdwiedzNasPage() {
+export default function SpotkajNasPage() {
   return (
     <>
       <PageHero
         imageSrc="/images/hero/big-photo1.jpg"
-        alt="Odwiedź Sady Celmerów"
+        alt="Spotkaj Sady Celmerów"
       />
-      <OdwiedzNasContent />
+      <SpotkajNasContent />
     </>
   );
 }

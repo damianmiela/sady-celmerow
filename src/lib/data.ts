@@ -21,7 +21,7 @@ export const navLinks = [
   { label: "Strona główna", href: "/" },
   { label: "Soki", href: "/soki" },
   { label: "Odmiany jabłek", href: "/odmiany" },
-  { label: "Odwiedź nas", href: "/odwiedz-nas" },
+  { label: "Spotkaj nas", href: "/spotkaj-nas" },
   { label: "Galeria", href: "/galeria" },
   { label: "Kontakt", href: "/kontakt" },
 ];

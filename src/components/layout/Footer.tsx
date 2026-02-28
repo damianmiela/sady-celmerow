@@ -18,7 +18,7 @@ const navIcons: Record<string, React.ReactNode> = {
   "/": <Home size={15} />,
   "/soki": <GlassWater size={15} />,
   "/odmiany": <Apple size={15} />,
-  "/odwiedz-nas": <MapPinned size={15} />,
+  "/spotkaj-nas": <MapPinned size={15} />,
   "/galeria": <Images size={15} />,
   "/kontakt": <Mail size={15} />,
 };
