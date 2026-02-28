@@ -9,6 +9,7 @@ import {
   MapPin,
   Mail,
   Facebook,
+  Scale,
 } from "lucide-react";
 import { siteConfig, navLinks } from "@/lib/data";
 
@@ -61,6 +62,15 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li className="border-t border-sage-700/50 pt-1.5">
+                <Link
+                  href="/informacje-prawne"
+                  className="flex items-center gap-2 text-sm text-cream-300/70 transition-colors hover:text-white"
+                >
+                  <span className="text-sage-500"><Scale size={15} /></span>
+                  Informacje prawne
+                </Link>
+              </li>
             </ul>
           </div>
 
