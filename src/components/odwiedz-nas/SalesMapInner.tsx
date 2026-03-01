@@ -17,23 +17,13 @@ const defaultIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const hqIcon = new L.DivIcon({
-  html: `<div style="
-    width: 38px; height: 38px;
-    background: #4a7c59;
-    border: 3px solid #fff;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    display: flex; align-items: center; justify-content: center;
-  "><div style="
-    transform: rotate(45deg);
-    color: #fff; font-size: 16px; font-weight: bold;
-  ">&#9733;</div></div>`,
-  className: "hq-marker-bounce",
-  iconSize: [38, 38],
-  iconAnchor: [19, 38],
-  popupAnchor: [0, -38],
+const hqSvg = encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="56" viewBox="0 0 40 56"><path d="M20 0C9 0 0 9 0 20c0 15 20 36 20 36s20-21 20-36C40 9 31 0 20 0z" fill="#3d6b4a" stroke="#fff" stroke-width="2"/><circle cx="20" cy="20" r="10" fill="#fff"/><text x="20" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#3d6b4a">&#9733;</text></svg>`);
+
+const hqIcon = new L.Icon({
+  iconUrl: `data:image/svg+xml,${hqSvg}`,
+  iconSize: [40, 56],
+  iconAnchor: [20, 56],
+  popupAnchor: [0, -56],
 });
 
 function FitBounds() {
@@ -50,14 +40,15 @@ function FitBounds() {
   return null;
 }
 
-function BouncingMarker({ point }: { point: (typeof salesPoints)[0] }) {
+function HQMarker({ point }: { point: (typeof salesPoints)[0] }) {
   const markerRef = useRef<L.Marker>(null);
 
   useEffect(() => {
-    const el = markerRef.current?.getElement();
-    if (!el) return;
-    el.style.animation = "bounce-marker 1s ease infinite";
-  }, []);
+    const marker = markerRef.current;
+    if (!marker) return;
+    const el = marker.getElement();
+    if (el) el.classList.add("hq-bounce");
+  });
 
   const mapsHref =
     point.mapsUrl ?? `https://www.google.com/maps?q=${point.lat},${point.lng}`;
@@ -99,11 +90,11 @@ export default function SalesMapInner() {
   return (
     <>
       <style>{`
-        @keyframes bounce-marker {
+        @keyframes hq-bounce {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-8px); }
         }
-        .hq-marker-bounce { background: none !important; border: none !important; }
+        .hq-bounce { animation: hq-bounce 1.5s ease-in-out infinite; }
       `}</style>
       <MapContainer
         center={[51.2, 17.05]}
@@ -118,7 +109,7 @@ export default function SalesMapInner() {
         <FitBounds />
         {salesPoints.map((point) =>
           point.isHQ ? (
-            <BouncingMarker key={point.id} point={point} />
+            <HQMarker key={point.id} point={point} />
           ) : (
             <Marker
               key={point.id}

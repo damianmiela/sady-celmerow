@@ -86,7 +86,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "es8bar",
     name: "es8bar — restauracja",
-    address: "Trzebnica",
+    address: "Łozina",
     lat: 51.22704246639916,
     lng: 17.169877027348104,
     description: "Restauracja serwująca nasze soki jabłkowe.",
