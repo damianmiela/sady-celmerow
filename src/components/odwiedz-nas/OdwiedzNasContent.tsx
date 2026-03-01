@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook } from "lucide-react";
+import { Facebook, MapPin, Clock, ExternalLink } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SalesMap from "@/components/odwiedz-nas/SalesMap";
@@ -11,20 +11,20 @@ import Lightbox from "@/components/ui/Lightbox";
 import { siteConfig } from "@/lib/data";
 
 const jablkobraniePhotos = [
-  { src: "/images/gallery/jablkobranie-glowne.jpg", thumb: "/images/gallery/jablkobranie-glowne-thumb.jpg", alt: "Jabłkobranie u Celmerów — zbiory" },
-  { src: "/images/gallery/jablkobranie-01.jpg", thumb: "/images/gallery/jablkobranie-01-thumb.jpg", alt: "Jabłkobranie — letni sad" },
-  { src: "/images/gallery/jablkobranie-02.jpg", thumb: "/images/gallery/jablkobranie-02-thumb.jpg", alt: "Jabłkobranie — kosze pełne jabłek" },
-  { src: "/images/gallery/jablkobranie-03.jpg", thumb: "/images/gallery/jablkobranie-03-thumb.jpg", alt: "Jabłkobranie — rodzinna zabawa" },
-  { src: "/images/gallery/jablkobranie-04.jpg", thumb: "/images/gallery/jablkobranie-04-thumb.jpg", alt: "Jabłkobranie — zbiory październikowe" },
-  { src: "/images/gallery/jablkobranie-05.jpg", thumb: "/images/gallery/jablkobranie-05-thumb.jpg", alt: "Jabłkobranie — degustacja" },
-  { src: "/images/gallery/jablkobranie-06.jpg", thumb: "/images/gallery/jablkobranie-06-thumb.jpg", alt: "Jabłkobranie — jabłka na drzewach" },
-  { src: "/images/gallery/jablkobranie-07.jpg", thumb: "/images/gallery/jablkobranie-07-thumb.jpg", alt: "Jabłkobranie — wiosenne przygotowania" },
-  { src: "/images/gallery/jablkobranie-08.jpg", thumb: "/images/gallery/jablkobranie-08-thumb.jpg", alt: "Jabłkobranie — sad pełen jabłek" },
-  { src: "/images/gallery/jablkobranie-09.jpg", thumb: "/images/gallery/jablkobranie-09-thumb.jpg", alt: "Jabłkobranie — dojrzałe owoce" },
-  { src: "/images/gallery/jablkobranie-10.jpg", thumb: "/images/gallery/jablkobranie-10-thumb.jpg", alt: "Jabłkobranie — zachód słońca" },
-  { src: "/images/gallery/jablkobranie-11.jpg", thumb: "/images/gallery/jablkobranie-11-thumb.jpg", alt: "Jabłkobranie — świeżo zebrane jabłka" },
-  { src: "/images/gallery/jablkobranie-12.jpg", thumb: "/images/gallery/jablkobranie-12-thumb.jpg", alt: "Jabłkobranie — ostatnie zbiory" },
-  { src: "/images/gallery/jablkobranie-plakat.jpg", thumb: "/images/gallery/jablkobranie-plakat-thumb.jpg", alt: "Jabłkobranie — plakat wydarzenia" },
+  { src: "/images/gallery/jablkobranie-glowne.jpg", thumb: "/images/gallery/jablkobranie-glowne-thumb.jpg", alt: "Pieczenie kiełbasek na ognisku podczas Jabłkobrania u Celmerów" },
+  { src: "/images/gallery/jablkobranie-01.jpg", thumb: "/images/gallery/jablkobranie-01-thumb.jpg", alt: "Skrzynka zielonych jabłek na wózku między letnimi rzędami sadu" },
+  { src: "/images/gallery/jablkobranie-02.jpg", thumb: "/images/gallery/jablkobranie-02-thumb.jpg", alt: "Stoisko z butelkami soków jabłkowych podczas Jabłkobrania" },
+  { src: "/images/gallery/jablkobranie-03.jpg", thumb: "/images/gallery/jablkobranie-03-thumb.jpg", alt: "Goście Jabłkobrania przybywają — samochody przy polnej drodze do sadu" },
+  { src: "/images/gallery/jablkobranie-04.jpg", thumb: "/images/gallery/jablkobranie-04-thumb.jpg", alt: "Kredowa tablica Jabłkobranie z jabłuszkami wskazująca drogę do sadu" },
+  { src: "/images/gallery/jablkobranie-05.jpg", thumb: "/images/gallery/jablkobranie-05-thumb.jpg", alt: "Plakat Jabłkobrania u Celmerów z terminami i odmianami jabłek" },
+  { src: "/images/gallery/jablkobranie-06.jpg", thumb: "/images/gallery/jablkobranie-06-thumb.jpg", alt: "Kartony soków jabłkowych Sady Celmerów na stoisku Jabłkobrania" },
+  { src: "/images/gallery/jablkobranie-07.jpg", thumb: "/images/gallery/jablkobranie-07-thumb.jpg", alt: "Stoisko Sadów Celmerów z banerem i jabłkami na targach" },
+  { src: "/images/gallery/jablkobranie-08.jpg", thumb: "/images/gallery/jablkobranie-08-thumb.jpg", alt: "Goście Jabłkobrania odpoczywają przy ognisku w sadzie" },
+  { src: "/images/gallery/jablkobranie-09.jpg", thumb: "/images/gallery/jablkobranie-09-thumb.jpg", alt: "Rodziny z dziećmi zbierają jabłka do taczek na Jabłkobraniu" },
+  { src: "/images/gallery/jablkobranie-10.jpg", thumb: "/images/gallery/jablkobranie-10-thumb.jpg", alt: "Obraz jabłek na sztaludze — plenerowe malowanie podczas Jabłkobrania" },
+  { src: "/images/gallery/jablkobranie-11.jpg", thumb: "/images/gallery/jablkobranie-11-thumb.jpg", alt: "Pełna skrzynia zielonych jabłek Golden Delicious między rzędami sadu" },
+  { src: "/images/gallery/jablkobranie-12.jpg", thumb: "/images/gallery/jablkobranie-12-thumb.jpg", alt: "Taczka z torbą jabłek na jesiennej alei sadu — Jabłkobranie" },
+  { src: "/images/gallery/jablkobranie-plakat.jpg", thumb: "/images/gallery/jablkobranie-plakat-thumb.jpg", alt: "Miniaturowy ogródek — dekoracja przy drzewach podczas Jabłkobrania" },
 ];
 
 const lightboxImages = jablkobraniePhotos.map((p) => ({
@@ -98,7 +98,7 @@ export default function SpotkajNasContent() {
             >
               <Image
                 src="/images/gallery/jablkobranie-glowne.jpg"
-                alt="Jabłkobranie u Celmerów — główne zdjęcie"
+                alt="Pieczenie kiełbasek na ognisku podczas Jabłkobrania u Celmerów"
                 width={800}
                 height={600}
                 className="h-64 w-full object-cover sm:h-80"
@@ -140,17 +140,45 @@ export default function SpotkajNasContent() {
           <div className="flex flex-col items-center gap-8 md:flex-row-reverse md:gap-12">
             <AnimatedSection className="flex-1 space-y-5">
               <p className="leading-relaxed text-neutral-600">
-                W każdy weekend wyruszamy do{" "}
-                <span className="font-semibold text-sage-700">Wrocławia</span>,
-                gdzie na bazarze rozkładamy nasze stoisko pełne jabłek, soków
-                i&nbsp;innych pyszności prosto z naszych sadów.
+                W każdy weekend wyruszamy na{" "}
+                <a
+                  href="https://bazarsmakoszy.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-semibold text-sage-700 underline decoration-sage-300 underline-offset-2 hover:text-sage-800"
+                >
+                  Wrocławski Bazar Smakoszy
+                  <ExternalLink size={14} />
+                </a>
+                {" "}— unikatowe miejsce, gdzie prawdziwi smakosze znajdą
+                najlepsze lokalne produkty. Na naszym stoisku czekają świeże
+                jabłka kilku odmian, tłoczone soki jabłkowe bez cukru
+                i&nbsp;konserwantów, chipsy jabłkowe oraz sezonowe przysmaki
+                prosto ze wzgórz Trzebnickich.
               </p>
               <p className="leading-relaxed text-neutral-600">
-                Znajdziecie u nas świeże jabłka kilku odmian, tłoczone soki
-                jabłkowe bez cukru i konserwantów, a także sezonowe przysmaki.
-                Zapraszamy serdecznie — pogadamy, podegustujemy i doradzimy,
+                Na bazarze oprócz nas znajdziecie ekologiczne warzywa, owoce,
+                sery, wędliny, świeże pieczywo i wiele innych lokalnych
+                specjałów. To idealne miejsce na weekendowe zakupy, degustację
+                i&nbsp;rozmowę z producentami. Wpadajcie — chętnie doradzimy,
                 która odmiana będzie dla Was najlepsza!
               </p>
+
+              <div className="mt-4 space-y-2 rounded-xl bg-cream-50 p-4">
+                <div className="flex items-start gap-2 text-sm text-neutral-600">
+                  <MapPin size={16} className="mt-0.5 flex-shrink-0 text-sage-600" />
+                  <span>
+                    <span className="font-semibold text-sage-700">ul. Paczkowska 26, Wrocław</span>
+                  </span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-neutral-600">
+                  <Clock size={16} className="mt-0.5 flex-shrink-0 text-sage-600" />
+                  <span>
+                    Sobota: <span className="font-medium">9:00–13:00</span>
+                    {" · "}Niedziela: <span className="font-medium">10:00–14:00</span>
+                  </span>
+                </div>
+              </div>
             </AnimatedSection>
 
             <motion.div
@@ -162,7 +190,7 @@ export default function SpotkajNasContent() {
             >
               <Image
                 src="/images/gallery/bazar-smakoszy-01.jpg"
-                alt="Bazar Smakoszy we Wrocławiu"
+                alt="Stoisko z owocami, sokami i przetworami na Wrocławskim Bazarze Smakoszy"
                 width={600}
                 height={400}
                 className="h-64 w-full object-cover sm:h-80"

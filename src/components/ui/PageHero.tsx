@@ -7,37 +7,24 @@ interface PageHeroProps {
   imageSrc: string;
   alt: string;
   blurDataURL?: string;
-  objectPosition?: string;
 }
 
 export default function PageHero({
   imageSrc,
   alt,
   blurDataURL,
-  objectPosition = "center",
 }: PageHeroProps) {
   const [loaded, setLoaded] = useState(false);
-  const needsNavOffset = objectPosition === "top";
 
   return (
     <>
-      <section
-        className={
-          needsNavOffset
-            ? "relative h-[calc(32vh+5rem)] min-h-[300px] overflow-hidden md:h-[calc(40vh+7rem)]"
-            : "relative h-[32vh] min-h-[220px] overflow-hidden md:h-[40vh]"
-        }
-      >
-        {/* Image container - offset below navbar when showing top of image */}
-        <div
-          className={`absolute inset-x-0 bottom-0 ${needsNavOffset ? "top-20 md:top-28" : "top-0"}`}
-        >
+      <section className="relative h-[calc(250px+5rem)] overflow-hidden md:h-[calc(430px+7rem)]">
+        <div className="absolute inset-x-0 bottom-0 top-20 md:top-28">
           <Image
             src={imageSrc}
             alt={alt}
             fill
             className={`object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
-            style={{ objectPosition }}
             priority
             sizes="100vw"
             placeholder={blurDataURL ? "blur" : undefined}
@@ -56,7 +43,7 @@ export default function PageHero({
       {!loaded && (
         <div
           className="fixed inset-x-0 bottom-0 z-30 bg-cream-50"
-          style={{ top: "min(32vh, calc(100vh - 220px))" }}
+          style={{ top: "min(calc(250px + 5rem), calc(100vh - 100px))" }}
         />
       )}
     </>

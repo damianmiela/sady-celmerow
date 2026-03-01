@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function SokiPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/big-photo1.jpg" alt="Naturalne soki jabłkowe z Sadów Celmerów" blurDataURL={heroBlur["/images/hero/big-photo1.jpg"]} />
+      <PageHero imageSrc="/images/hero/hero-soki.jpg" alt="Naturalne soki jabłkowe z Sadów Celmerów" blurDataURL={heroBlur["/images/hero/hero-soki.jpg"]} />
 
       <section className="section-padding bg-cream-50">
         <SectionHeading>Nasze soki</SectionHeading>

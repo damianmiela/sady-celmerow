@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function GaleriaPage() {
   return (
     <>
-      <PageHero imageSrc="/images/hero/hero-galeria.jpg" alt="Galeria zdjęć z Sadów Celmerów — kwitnące jabłonie" blurDataURL={heroBlur["/images/hero/hero-galeria.jpg"]} objectPosition="top" />
+      <PageHero imageSrc="/images/hero/hero-galeria.jpg" alt="Galeria zdjęć z Sadów Celmerów — kwitnące jabłonie" blurDataURL={heroBlur["/images/hero/hero-galeria.jpg"]} />
 
       <section className="section-padding bg-cream-50">
         <SectionHeading>Galeria zdjęć</SectionHeading>
