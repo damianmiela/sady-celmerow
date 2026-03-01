@@ -102,10 +102,10 @@ export default function Lightbox({
             <Image
               src={current.src}
               alt={current.alt}
-              width={1200}
-              height={800}
+              width={1600}
+              height={1067}
               className="max-h-[85vh] w-auto rounded-lg object-contain"
-              sizes="90vw"
+              unoptimized
             />
             <p className="mt-3 text-center text-sm text-white/70">{current.alt}</p>
           </motion.div>
