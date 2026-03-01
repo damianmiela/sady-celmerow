@@ -1,9 +1,10 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { salesPoints } from "@/lib/salesPoints";
+import { useEffect } from "react";
 
 const icon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -16,15 +17,25 @@ const icon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const center = salesPoints.length
-  ? { lat: salesPoints[0].lat, lng: salesPoints[0].lng }
-  : { lat: 51.31, lng: 17.06 };
+function FitBounds() {
+  const map = useMap();
+
+  useEffect(() => {
+    if (salesPoints.length === 0) return;
+    const bounds = L.latLngBounds(
+      salesPoints.map((p) => [p.lat, p.lng] as [number, number]),
+    );
+    map.fitBounds(bounds, { padding: [40, 40] });
+  }, [map]);
+
+  return null;
+}
 
 export default function SalesMapInner() {
   return (
     <MapContainer
-      center={[center.lat, center.lng]}
-      zoom={13}
+      center={[51.2, 17.05]}
+      zoom={10}
       scrollWheelZoom={false}
       className="h-[400px] w-full sm:h-[500px]"
     >
@@ -32,6 +43,7 @@ export default function SalesMapInner() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <FitBounds />
       {salesPoints.map((point) => (
         <Marker key={point.id} position={[point.lat, point.lng]} icon={icon}>
           <Popup>
