@@ -14,7 +14,7 @@ export default function SalesMap() {
 
   if (!MapComponent) {
     return (
-      <div className="flex h-[400px] items-center justify-center bg-sage-50 text-sage-400 sm:h-[500px]">
+      <div className="flex h-[350px] items-center justify-center rounded-2xl bg-sage-50 text-sage-400 shadow-md sm:h-[450px]">
         Ładowanie mapy…
       </div>
     );

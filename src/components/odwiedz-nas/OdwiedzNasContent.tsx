@@ -213,7 +213,7 @@ export default function SpotkajNasContent() {
           </p>
         </AnimatedSection>
 
-        <div className="relative z-0 mx-auto max-w-5xl overflow-hidden rounded-2xl shadow-md">
+        <div className="relative z-0 mx-auto max-w-6xl">
           <SalesMap />
         </div>
       </section>
