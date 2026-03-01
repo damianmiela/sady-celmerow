@@ -81,12 +81,12 @@ export const juices: Juice[] = [
   },
   {
     id: 1,
-    name: "Sok Jabłkowo - Buraczkowy",
-    shortName: "Jabłkowo-Buraczkowy",
+    name: "Sok Jabłkowo - Rabarbarowy",
+    shortName: "Jabłkowo-Rabarbarowy",
     description:
-      "Sok Jabłkowo - Buraczkowy płonąca, krwista czerwień życiodajnego soku, sprawi że zadumasz się na chwilę i docenisz bogactwo wrażeń estetyczno-smakowych. Ten sok charakteryzuje się mocnym, wytrawnym aromatem buraka z łagodnym smakiem naszych jabłuszek, neutralizującym warzywną surowość. Sok stworzony dla koneserów i wielbicieli zdrowych doznań.",
-    image: "/images/juice/burak.jpg",
-    imageMini: "/images/juice/burak-min.jpg",
+      "Sok Jabłkowo - Rabarbarowy to orzeźwiające spotkanie krągłej słodyczy jabłka z wyrazistą kwaskowatością rabarbaru. Charakterystyczna, lekko cierpka nuta rabarbaru znakomicie równoważy owocową łagodność, tworząc sok o wyjątkowo żywym, pobudzającym smaku. Idealna propozycja na upalne dni i dla tych, którzy cenią odważne, naturalne połączenia.",
+    image: "/images/juice/rabarbar.jpg",
+    imageMini: "/images/juice/rabarbar-min.jpg",
   },
   {
     id: 7,
