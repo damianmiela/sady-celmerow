@@ -162,12 +162,7 @@ export const appleVarieties: AppleVariety[] = [
   { name: "Golden Delicious", image: "/images/odmiany/golden-delicious.jpg", thumb: "/images/odmiany/golden-delicious-thumb.jpg" },
   { name: "Rubin", image: "/images/odmiany/rubin.jpg", thumb: "/images/odmiany/rubin-thumb.jpg" },
   { name: "Rubinstar", image: "/images/odmiany/rubinstar.jpg", thumb: "/images/odmiany/rubinstar-thumb.jpg" },
-  {
-    name: "Red Jonaprince Select",
-    image: "/images/odmiany/red-jonaprince-select.jpg",
-    thumb: "/images/odmiany/red-jonaprince-select.jpg",
-    placeholder: true,
-  },
+  { name: "Red Jonaprince Select", image: "/images/odmiany/red-jonaprince-select.jpg", thumb: "/images/odmiany/red-jonaprince-select-thumb.jpg" },
 ];
 
 export const varietiesText = [
