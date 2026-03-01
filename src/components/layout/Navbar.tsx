@@ -29,22 +29,22 @@ export default function Navbar() {
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-cream-300/60 bg-cream-50/95 shadow-sm backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center px-4 py-1 sm:px-6 lg:px-8">
           {/* Spacer to balance hamburger on mobile */}
-          <div className="w-[42px] md:hidden" />
+          <div className="w-[42px] min-[820px]:hidden" />
 
           {/* Logo — centered on mobile, left on desktop */}
-          <Link href="/" className="flex flex-1 items-center justify-center md:flex-none md:justify-start">
+          <Link href="/" className="flex flex-1 items-center justify-center min-[820px]:flex-none min-[820px]:justify-start">
             <Image
               src="/images/logo-512.png"
               alt="Sady Celmerów"
               width={480}
               height={180}
-              className="h-20 w-auto md:h-28"
+              className="h-20 w-auto min-[820px]:h-28"
               priority
             />
           </Link>
 
           {/* Desktop nav */}
-          <ul className="hidden items-center gap-1 md:ml-auto md:flex">
+          <ul className="hidden items-center gap-1 min-[820px]:ml-auto min-[820px]:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -72,7 +72,7 @@ export default function Navbar() {
           {/* Mobile hamburger — right side */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-md p-2 text-sage-600 transition-colors hover:bg-sage-500/10 md:hidden"
+            className="rounded-md p-2 text-sage-600 transition-colors hover:bg-sage-500/10 min-[820px]:hidden"
             aria-label={isOpen ? "Zamknij menu" : "Otwórz menu"}
           >
             {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -88,7 +88,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-cream-50 md:hidden"
+            className="fixed inset-0 z-[60] bg-cream-50 min-[820px]:hidden"
           >
             {/* Top bar with centered logo + close button */}
             <div className="relative flex items-center justify-center border-b border-cream-300/60 px-4 py-1 sm:px-6">

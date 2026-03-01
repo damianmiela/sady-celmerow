@@ -26,7 +26,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "il-pane-trzebnica",
     name: "Il Pane — piekarnia",
-    address: "Trzebnica",
+    address: "Kościelna 25D, 55-100 Trzebnica",
     lat: 51.30705309981582,
     lng: 17.05987548524783,
     description: "Piekarnia rzemieślnicza z naszymi sokami w ofercie.",
@@ -35,7 +35,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "zajazd-pod-lwem",
     name: "Zajazd Pod Lwem — restauracja",
-    address: "Trzebnica",
+    address: "Nowy Dwór 60, 55-100 Trzebnica",
     lat: 51.32737730673984,
     lng: 17.054946902935004,
     description: "Restauracja z naszymi sokami w karcie.",
@@ -45,7 +45,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "il-pane-oborniki",
     name: "Il Pane — piekarnia",
-    address: "Oborniki Śląskie",
+    address: "Władysława Łokietka 4/5, 55-120 Oborniki Śląskie",
     lat: 51.29930462826928,
     lng: 16.911138196667597,
     description: "Piekarnia rzemieślnicza z naszymi sokami w ofercie.",
@@ -55,7 +55,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "es8bar",
     name: "es8bar — restauracja",
-    address: "Łozina",
+    address: "Wrocławska 26, 55-095 Łozina",
     lat: 51.22704246639916,
     lng: 17.169877027348104,
     description: "Restauracja serwująca nasze soki jabłkowe.",
@@ -74,7 +74,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "por-favor",
     name: "POR favor — sklep owocowo-warzywny",
-    address: "Wrocław",
+    address: "Hubska 123a, 50-502 Wrocław",
     lat: 51.086275903450435,
     lng: 17.046395693254006,
     description: "Sklep owocowo-warzywny z naszymi jabłkami i sokami.",
@@ -83,7 +83,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "ogrodek-warzywny",
     name: "Ogródek Warzywny",
-    address: "Wrocław",
+    address: "Zemska 18b, 54-150 Wrocław",
     lat: 51.11639341479037,
     lng: 16.94957609170451,
     description: "Świeże jabłka i soki Sady Celmerów dostępne na miejscu.",
@@ -92,7 +92,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "bazar-komador",
     name: "Bazar Komador — Stoisko u Pana Sławka",
-    address: "Wrocław",
+    address: "Radosna 38, 53-336 Wrocław",
     lat: 51.09416026635312,
     lng: 17.02476736418977,
     description: "Nasze jabłka i soki na stoisku u Pana Sławka.",
@@ -101,7 +101,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "piekarnia-lwowska",
     name: "Piekarnia Lwowska",
-    address: "Wrocław",
+    address: "Lwowska 32, 53-516 Wrocław",
     lat: 51.09932525907361,
     lng: 17.012210883654674,
     description: "Nasze soki jabłkowe dostępne w piekarni.",
@@ -110,7 +110,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "fabryczna-boulder",
     name: "Fabryczna Boulder — ścianka wspinaczkowa",
-    address: "Wrocław",
+    address: "Grabiszyńska 241D, 53-235 Wrocław",
     lat: 51.09736451539748,
     lng: 16.982400844861736,
     description: "Soki Sady Celmerów na ściance wspinaczkowej.",
@@ -119,7 +119,7 @@ export const salesPoints: SalesPoint[] = [
   {
     id: "wibrem-arena",
     name: "Wibrem Arena — ścianka wspinaczkowa",
-    address: "Wrocław",
+    address: "Paprotna 12, 51-117 Wrocław",
     lat: 51.15533733765965,
     lng: 17.02456502296663,
     description: "Nasze soki dostępne na miejscu.",
