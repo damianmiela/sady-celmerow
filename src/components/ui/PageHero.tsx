@@ -18,13 +18,14 @@ export default function PageHero({
 
   return (
     <>
-      <section className="relative overflow-hidden bg-cream-50 pt-20 md:pt-28">
+      <section className="relative overflow-hidden bg-sage-900 pt-20 md:pt-28">
         <div className="relative mx-auto aspect-[1920/430] min-h-[10rem] max-w-[1920px]">
           <Image
             src={imageSrc}
             alt={alt}
             fill
-            className={`object-cover object-center transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+            className={`transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+            style={{ objectFit: "cover", objectPosition: "center center" }}
             priority
             sizes="(max-width: 1920px) 100vw, 1920px"
             placeholder={blurDataURL ? "blur" : undefined}
@@ -38,8 +39,8 @@ export default function PageHero({
 
           <div className="absolute inset-0 bg-black/30" />
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-32 bg-gradient-to-r from-cream-50 to-transparent opacity-0 min-[1920px]:opacity-100" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-32 bg-gradient-to-l from-cream-50 to-transparent opacity-0 min-[1920px]:opacity-100" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-6 bg-gradient-to-r from-sage-900 to-transparent opacity-0 min-[1920px]:opacity-100" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-6 bg-gradient-to-l from-sage-900 to-transparent opacity-0 min-[1920px]:opacity-100" />
         </div>
       </section>
 
