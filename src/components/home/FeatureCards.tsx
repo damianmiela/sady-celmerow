@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Apple, Droplets, Camera } from "lucide-react";
+import { Apple, Droplets, Camera, MapPin } from "lucide-react";
 
 const features = [
   {
@@ -17,9 +17,17 @@ const features = [
   {
     icon: Apple,
     title: "Odmiany jabłek",
-    description: "Uprawiamy 12 odmian jabłek, w tym rarytasy jak Topaz i Rubinola.",
+    description: "Uprawiamy 6 starannie dobranych odmian jabłek — od słodkich po wyraziście kwaskowate.",
     href: "/odmiany",
     image: "/images/odmiany/topaz.jpg",
+  },
+  {
+    icon: MapPin,
+    title: "Spotkaj nas",
+    description:
+      "Jabłkobranie, Bazar Smakoszy i punkty sprzedaży — sprawdź, gdzie nas znajdziesz!",
+    href: "/spotkaj-nas",
+    image: "/images/gallery/sad-nowe-02.jpg",
   },
   {
     icon: Camera,
@@ -27,7 +35,7 @@ const features = [
     description:
       "Zajrzyj do naszego sadu — jabłonie, przyroda i piękno wzgórz Trzebnickich.",
     href: "/galeria",
-    image: "/images/gallery/czerwone-jablka.jpg",
+    image: "/images/gallery/sad-kwitnacy.jpg",
   },
 ];
 
@@ -35,7 +43,7 @@ export default function FeatureCards() {
   return (
     <section className="section-padding bg-cream-100">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, i) => (
             <motion.div
               key={feature.href}
