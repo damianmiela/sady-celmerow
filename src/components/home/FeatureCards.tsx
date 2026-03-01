@@ -51,10 +51,11 @@ export default function FeatureCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="h-full"
             >
               <Link
                 href={feature.href}
-                className="group block overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-lg"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:shadow-lg"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -69,7 +70,7 @@ export default function FeatureCards() {
                     <feature.icon size={24} className="text-white/90" />
                   </div>
                 </div>
-                <div className="p-5">
+                <div className="flex-1 p-5">
                   <h3 className="font-serif text-lg font-bold text-sage-700">
                     {feature.title}
                   </h3>

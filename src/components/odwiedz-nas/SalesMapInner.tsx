@@ -36,7 +36,7 @@ export default function SalesMapInner() {
     <MapContainer
       center={[51.2, 17.05]}
       zoom={10}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       className="h-[400px] w-full sm:h-[500px]"
     >
       <TileLayer
@@ -58,6 +58,15 @@ export default function SalesMapInner() {
                 </span>
               </>
             )}
+            <br />
+            <a
+              href={`https://www.google.com/maps?q=${point.lat},${point.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-blue-600 hover:underline"
+            >
+              Otwórz w Google Maps &rarr;
+            </a>
           </Popup>
         </Marker>
       ))}
