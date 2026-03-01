@@ -28,14 +28,8 @@ export default function Navbar() {
     <>
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-cream-300/60 bg-cream-50/95 shadow-sm backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center px-4 py-1 sm:px-6 lg:px-8">
-          {/* Mobile: hamburger left, logo center, spacer right */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="rounded-md p-2 text-sage-600 transition-colors hover:bg-sage-500/10 md:hidden"
-            aria-label={isOpen ? "Zamknij menu" : "Otwórz menu"}
-          >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
+          {/* Spacer to balance hamburger on mobile */}
+          <div className="w-[42px] md:hidden" />
 
           {/* Logo — centered on mobile, left on desktop */}
           <Link href="/" className="flex flex-1 items-center justify-center md:flex-none md:justify-start">
@@ -48,9 +42,6 @@ export default function Navbar() {
               priority
             />
           </Link>
-
-          {/* Spacer to balance hamburger on mobile */}
-          <div className="w-[42px] md:hidden" />
 
           {/* Desktop nav */}
           <ul className="hidden items-center gap-1 md:ml-auto md:flex">
@@ -77,6 +68,15 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile hamburger — right side */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-md p-2 text-sage-600 transition-colors hover:bg-sage-500/10 md:hidden"
+            aria-label={isOpen ? "Zamknij menu" : "Otwórz menu"}
+          >
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </nav>
       </header>
 

@@ -87,6 +87,7 @@ export const salesPoints: SalesPoint[] = [
     lat: 51.11639341479037,
     lng: 16.94957609170451,
     description: "Świeże jabłka i soki Sady Celmerów dostępne na miejscu.",
+    mapsUrl: "https://www.google.com/maps?q=51.11639341479037,16.94957609170451",
   },
   {
     id: "bazar-komador",

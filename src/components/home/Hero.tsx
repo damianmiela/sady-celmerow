@@ -13,7 +13,7 @@ export default function Hero() {
         src="/images/hero/big-photo1.jpg"
         alt="Sady Celmerów"
         fill
-        className="object-cover"
+        className="object-cover object-center"
         priority
         sizes="100vw"
       />
