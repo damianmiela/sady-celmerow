@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { salesPoints } from "@/lib/salesPoints";
 
 export default function SalesMap() {
   const [MapComponent, setMapComponent] = useState<React.ComponentType | null>(

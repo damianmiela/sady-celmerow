@@ -9,9 +9,22 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { salesPoints } from "@/lib/salesPoints";
+import { salesPoints, type SalesPoint } from "@/lib/salesPoints";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { MapPin, ExternalLink } from "lucide-react";
+
+function makeSvgIcon(fill: string, size: number) {
+  const svg = encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${Math.round(size * 1.4)}" viewBox="0 0 40 56"><path d="M20 0C9 0 0 9 0 20c0 15 20 36 20 36s20-21 20-36C40 9 31 0 20 0z" fill="${fill}" stroke="#fff" stroke-width="2"/><circle cx="20" cy="20" r="8" fill="#fff" opacity="0.9"/></svg>`,
+  );
+  const h = Math.round(size * 1.4);
+  return new L.Icon({
+    iconUrl: `data:image/svg+xml,${svg}`,
+    iconSize: [size, h],
+    iconAnchor: [size / 2, h],
+    popupAnchor: [0, -h],
+  });
+}
 
 const defaultIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -24,20 +37,11 @@ const defaultIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const hqSvg = encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="56" viewBox="0 0 40 56"><path d="M20 0C9 0 0 9 0 20c0 15 20 36 20 36s20-21 20-36C40 9 31 0 20 0z" fill="#3d6b4a" stroke="#fff" stroke-width="2"/><circle cx="20" cy="20" r="10" fill="#fff"/><text x="20" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#3d6b4a">&#9733;</text></svg>`,
-);
-
-const hqIcon = new L.Icon({
-  iconUrl: `data:image/svg+xml,${hqSvg}`,
-  iconSize: [40, 56],
-  iconAnchor: [20, 56],
-  popupAnchor: [0, -56],
-});
+const hqIcon = makeSvgIcon("#3d6b4a", 38);
+const hoverIcon = makeSvgIcon("#c2410c", 34);
 
 function FitBounds() {
   const map = useMap();
-
   useEffect(() => {
     if (salesPoints.length === 0) return;
     const bounds = L.latLngBounds(
@@ -45,19 +49,19 @@ function FitBounds() {
     );
     map.fitBounds(bounds, { padding: [40, 40] });
   }, [map]);
-
   return null;
 }
 
 function MapMarkers({
   onMarkerClick,
   activeId,
+  hoveredId,
 }: {
   onMarkerClick: (id: string) => void;
   activeId: string | null;
+  hoveredId: string | null;
 }) {
   const markerRefs = useRef<Record<string, L.Marker | null>>({});
-  const map = useMap();
 
   useEffect(() => {
     if (!activeId) return;
@@ -65,14 +69,22 @@ function MapMarkers({
     if (marker) marker.openPopup();
   }, [activeId]);
 
+  const getIcon = (point: SalesPoint) => {
+    if (point.isHQ) return hqIcon;
+    if (hoveredId === point.id) return hoverIcon;
+    return defaultIcon;
+  };
+
   return (
     <>
       {salesPoints.map((point) => (
         <Marker
           key={point.id}
           position={[point.lat, point.lng]}
-          icon={point.isHQ ? hqIcon : defaultIcon}
-          zIndexOffset={point.isHQ ? 1000 : 0}
+          icon={getIcon(point)}
+          zIndexOffset={
+            point.isHQ ? 1000 : hoveredId === point.id ? 900 : 0
+          }
           ref={(ref) => {
             markerRefs.current[point.id] = ref as unknown as L.Marker | null;
           }}
@@ -120,7 +132,6 @@ function MapController({
   onDone: () => void;
 }) {
   const map = useMap();
-
   useEffect(() => {
     if (!targetId) return;
     const point = salesPoints.find((p) => p.id === targetId);
@@ -128,12 +139,12 @@ function MapController({
     map.flyTo([point.lat, point.lng], 14, { duration: 0.8 });
     onDone();
   }, [targetId, map, onDone]);
-
   return null;
 }
 
 export default function SalesMapInner() {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [flyToId, setFlyToId] = useState<string | null>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -157,6 +168,11 @@ export default function SalesMapInner() {
 
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl shadow-md md:flex-row">
+      <style>{`
+        .leaflet-popup-content { margin: 10px 12px !important; max-width: 200px; }
+        .leaflet-popup { z-index: 1100 !important; }
+      `}</style>
+
       <div className="relative z-0 w-full md:w-2/3">
         <MapContainer
           center={[51.2, 17.05]}
@@ -169,7 +185,11 @@ export default function SalesMapInner() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <FitBounds />
-          <MapMarkers onMarkerClick={handleMarkerClick} activeId={activeId} />
+          <MapMarkers
+            onMarkerClick={handleMarkerClick}
+            activeId={activeId}
+            hoveredId={hoveredId}
+          />
           <MapController targetId={flyToId} onDone={clearFlyTo} />
         </MapContainer>
       </div>
@@ -188,6 +208,8 @@ export default function SalesMapInner() {
             key={point.id}
             id={`sp-${point.id}`}
             onClick={() => handleSidebarClick(point.id)}
+            onMouseEnter={() => setHoveredId(point.id)}
+            onMouseLeave={() => setHoveredId(null)}
             className={`w-full border-b border-sage-100 px-4 py-3 text-left transition-colors hover:bg-sage-50 ${
               activeId === point.id ? "bg-sage-100" : ""
             }`}

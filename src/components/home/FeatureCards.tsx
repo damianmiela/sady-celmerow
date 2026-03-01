@@ -13,6 +13,7 @@ const features = [
       "100% naturalne soki tłoczone z jabłek z naszych sadów — bez cukru, bez konserwantów.",
     href: "/soki",
     image: "/images/juice/jablko.jpg",
+    objectPosition: "center",
   },
   {
     icon: Apple,
@@ -20,6 +21,7 @@ const features = [
     description: "Uprawiamy 6 starannie dobranych odmian jabłek — od słodkich po wyraziście kwaskowate.",
     href: "/odmiany",
     image: "/images/odmiany/topaz.jpg",
+    objectPosition: "center",
   },
   {
     icon: MapPin,
@@ -28,6 +30,7 @@ const features = [
       "Jabłkobranie, Bazar Smakoszy i punkty sprzedaży — sprawdź, gdzie nas znajdziesz!",
     href: "/spotkaj-nas",
     image: "/images/gallery/sad-nowe-02.jpg",
+    objectPosition: "top",
   },
   {
     icon: Camera,
@@ -36,6 +39,7 @@ const features = [
       "Zajrzyj do naszego sadu — jabłonie, przyroda i piękno wzgórz Trzebnickich.",
     href: "/galeria",
     image: "/images/gallery/sad-kwitnacy.jpg",
+    objectPosition: "center",
   },
 ];
 
@@ -63,6 +67,7 @@ export default function FeatureCards() {
                     alt={feature.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ objectPosition: feature.objectPosition }}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

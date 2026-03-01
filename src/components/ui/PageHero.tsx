@@ -18,8 +18,8 @@ export default function PageHero({
 
   return (
     <>
-      <section className="relative h-[calc(250px+5rem)] overflow-hidden md:h-[calc(430px+7rem)]">
-        <div className="absolute inset-x-0 bottom-0 top-20 md:top-28">
+      <section className="relative overflow-hidden pt-20 md:pt-28">
+        <div className="relative aspect-[1920/430] min-h-[10rem]">
           <Image
             src={imageSrc}
             alt={alt}
@@ -43,7 +43,7 @@ export default function PageHero({
       {!loaded && (
         <div
           className="fixed inset-x-0 bottom-0 z-30 bg-cream-50"
-          style={{ top: "min(calc(250px + 5rem), calc(100vh - 100px))" }}
+          style={{ top: "min(calc(100vw * 430 / 1920 + 5rem), calc(100vh - 100px))" }}
         />
       )}
     </>

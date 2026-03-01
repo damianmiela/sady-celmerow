@@ -10,6 +10,7 @@ export interface SalesPoint {
 }
 
 export const salesPoints: SalesPoint[] = [
+  // ── Sady Celmerów (HQ) ──
   {
     id: "sady-celmerow",
     name: "Sady Celmerów",
@@ -21,6 +22,46 @@ export const salesPoints: SalesPoint[] = [
     mapsUrl: "https://maps.app.goo.gl/fWoKNBcPtvz2jHPF7",
     isHQ: true,
   },
+  // ── Trzebnica ──
+  {
+    id: "il-pane-trzebnica",
+    name: "Il Pane — piekarnia",
+    address: "Trzebnica",
+    lat: 51.30705309981582,
+    lng: 17.05987548524783,
+    description: "Piekarnia rzemieślnicza z naszymi sokami w ofercie.",
+    mapsUrl: "https://maps.app.goo.gl/2hardg4d4aoTFkmG6",
+  },
+  {
+    id: "zajazd-pod-lwem",
+    name: "Zajazd Pod Lwem — restauracja",
+    address: "Trzebnica",
+    lat: 51.32737730673984,
+    lng: 17.054946902935004,
+    description: "Restauracja z naszymi sokami w karcie.",
+    mapsUrl: "https://maps.app.goo.gl/VdKcPTZWGoEL1EeR6",
+  },
+  // ── Oborniki Śląskie ──
+  {
+    id: "il-pane-oborniki",
+    name: "Il Pane — piekarnia",
+    address: "Oborniki Śląskie",
+    lat: 51.29930462826928,
+    lng: 16.911138196667597,
+    description: "Piekarnia rzemieślnicza z naszymi sokami w ofercie.",
+    mapsUrl: "https://maps.app.goo.gl/nVLqDCSutERMt6g56",
+  },
+  // ── Łozina ──
+  {
+    id: "es8bar",
+    name: "es8bar — restauracja",
+    address: "Łozina",
+    lat: 51.22704246639916,
+    lng: 17.169877027348104,
+    description: "Restauracja serwująca nasze soki jabłkowe.",
+    mapsUrl: "https://maps.app.goo.gl/E1PfyiQgLwE1sFoT9",
+  },
+  // ── Wrocław ──
   {
     id: "bazar-smakoszy",
     name: "Wrocławski Bazar Smakoszy",
@@ -82,41 +123,5 @@ export const salesPoints: SalesPoint[] = [
     lng: 17.02456502296663,
     description: "Nasze soki dostępne na miejscu.",
     mapsUrl: "https://maps.app.goo.gl/aN6Vj32LihHqLogs7",
-  },
-  {
-    id: "es8bar",
-    name: "es8bar — restauracja",
-    address: "Łozina",
-    lat: 51.22704246639916,
-    lng: 17.169877027348104,
-    description: "Restauracja serwująca nasze soki jabłkowe.",
-    mapsUrl: "https://maps.app.goo.gl/E1PfyiQgLwE1sFoT9",
-  },
-  {
-    id: "il-pane-trzebnica",
-    name: "Il Pane — piekarnia",
-    address: "Trzebnica",
-    lat: 51.30705309981582,
-    lng: 17.05987548524783,
-    description: "Piekarnia rzemieślnicza z naszymi sokami w ofercie.",
-    mapsUrl: "https://maps.app.goo.gl/2hardg4d4aoTFkmG6",
-  },
-  {
-    id: "il-pane-oborniki",
-    name: "Il Pane — piekarnia",
-    address: "Oborniki Śląskie",
-    lat: 51.29930462826928,
-    lng: 16.911138196667597,
-    description: "Piekarnia rzemieślnicza z naszymi sokami w ofercie.",
-    mapsUrl: "https://maps.app.goo.gl/nVLqDCSutERMt6g56",
-  },
-  {
-    id: "zajazd-pod-lwem",
-    name: "Zajazd Pod Lwem — restauracja",
-    address: "Trzebnica",
-    lat: 51.32737730673984,
-    lng: 17.054946902935004,
-    description: "Restauracja z naszymi sokami w karcie.",
-    mapsUrl: "https://maps.app.goo.gl/VdKcPTZWGoEL1EeR6",
   },
 ];
