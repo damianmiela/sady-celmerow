@@ -91,8 +91,8 @@ export default function SalesMapInner() {
     <>
       <style>{`
         @keyframes hq-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
+          0%, 100% { margin-top: 0; }
+          50% { margin-top: -8px; }
         }
         .hq-bounce { animation: hq-bounce 1.5s ease-in-out infinite; }
       `}</style>
