@@ -10,3 +10,10 @@ services:
         required: false
     environment:
       - NODE_ENV=production
+    networks:
+      - default
+      - proxy
+
+networks:
+  proxy:
+    external: true

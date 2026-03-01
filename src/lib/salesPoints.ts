@@ -125,4 +125,14 @@ export const salesPoints: SalesPoint[] = [
     description: "Nasze soki dostępne na miejscu.",
     mapsUrl: "https://maps.app.goo.gl/aN6Vj32LihHqLogs7",
   },
+  // ── Lubin ──
+  {
+    id: "stoisko-u-roberta",
+    name: "Stoisko u Roberta na Lubińskim Bazarku",
+    address: "Ignacego Łukasiewicza, 59-339 Lubin",
+    lat: 51.40274222097091,
+    lng: 16.208686501431664,
+    description: "Nasze jabłka i soki dostępne na bazarku w Lubinie.",
+    mapsUrl: "https://maps.app.goo.gl/mVcAAPqUBkWe8z3eA",
+  },
 ];
