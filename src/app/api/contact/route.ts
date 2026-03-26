@@ -5,11 +5,22 @@ interface ContactBody {
   name: string;
   email: string;
   message: string;
+  /** Honeypot — must stay empty */
+  website?: string;
+  /** Client timestamp (ms) when the form was shown */
+  formStartedAt?: number;
+  turnstileToken?: string;
 }
 
 const GMAIL_USER = process.env.GMAIL_USER;
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 const CONTACT_RECIPIENT = process.env.CONTACT_RECIPIENT ?? GMAIL_USER;
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+
+/** Minimum time on page before submit (ms) */
+const MIN_FORM_MS = 2_500;
+/** Reject if form token is older than this (ms) */
+const MAX_FORM_AGE_MS = 2 * 60 * 60 * 1000;
 
 function isConfigured(): boolean {
   return Boolean(GMAIL_USER && GMAIL_APP_PASSWORD);
@@ -24,6 +35,58 @@ function validate(body: ContactBody): string | null {
   }
   if (!body.message || body.message.trim().length < 10) {
     return "Wiadomość jest wymagana (min. 10 znaków).";
+  }
+  return null;
+}
+
+function getClientIp(request: Request): string | undefined {
+  const xff = request.headers.get("x-forwarded-for");
+  if (xff) {
+    return xff.split(",")[0]?.trim();
+  }
+  return request.headers.get("x-real-ip") ?? undefined;
+}
+
+async function verifyTurnstile(token: string, remoteip?: string): Promise<boolean> {
+  if (!TURNSTILE_SECRET_KEY) {
+    if (process.env.NODE_ENV !== "production") {
+      // eslint-disable-next-line no-console -- dev-only warning
+      console.warn("TURNSTILE_SECRET_KEY missing — skipping Turnstile (non-production only)");
+      return true;
+    }
+    return false;
+  }
+
+  const body = new URLSearchParams();
+  body.set("secret", TURNSTILE_SECRET_KEY);
+  body.set("response", token);
+  if (remoteip) {
+    body.set("remoteip", remoteip);
+  }
+
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  });
+
+  const data = (await res.json()) as { success?: boolean };
+  return data.success === true;
+}
+
+function checkTiming(formStartedAt: unknown): string | null {
+  if (typeof formStartedAt !== "number" || !Number.isFinite(formStartedAt)) {
+    return "spam";
+  }
+  const now = Date.now();
+  if (formStartedAt > now + 60_000) {
+    return "spam";
+  }
+  if (now - formStartedAt > MAX_FORM_AGE_MS) {
+    return "spam";
+  }
+  if (now - formStartedAt < MIN_FORM_MS) {
+    return "Proszę chwilę poczekać przed wysłaniem formularza.";
   }
   return null;
 }
@@ -169,19 +232,58 @@ function buildConfirmationEmail(name: string, message: string): string {
 </html>`;
 }
 
+const GENERIC_REJECT =
+  "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się telefonicznie.";
+
 export async function POST(request: Request) {
   try {
     const body: ContactBody = await request.json();
 
-    const error = validate(body);
-    if (error) {
-      return NextResponse.json({ error }, { status: 400 });
+    if (typeof body.website === "string" && body.website.trim() !== "") {
+      return NextResponse.json({ error: GENERIC_REJECT }, { status: 400 });
+    }
+
+    const fieldError = validate(body);
+    if (fieldError) {
+      return NextResponse.json({ error: fieldError }, { status: 400 });
+    }
+
+    const timingError = checkTiming(body.formStartedAt);
+    if (timingError === "spam") {
+      return NextResponse.json({ error: GENERIC_REJECT }, { status: 400 });
+    }
+    if (timingError) {
+      return NextResponse.json({ error: timingError }, { status: 400 });
+    }
+
+    const token =
+      typeof body.turnstileToken === "string" ? body.turnstileToken.trim() : "";
+    if (!token) {
+      return NextResponse.json(
+        { error: "Potwierdź, że nie jesteś robotem i spróbuj ponownie." },
+        { status: 400 },
+      );
+    }
+
+    const ip = getClientIp(request);
+    const turnstileOk = await verifyTurnstile(token, ip);
+    if (!turnstileOk) {
+      return NextResponse.json(
+        {
+          error:
+            "Nie udało się zweryfikować formularza. Odśwież stronę i spróbuj ponownie.",
+        },
+        { status: 400 },
+      );
     }
 
     if (!isConfigured()) {
       console.error("Gmail credentials not configured (GMAIL_USER, GMAIL_APP_PASSWORD)"); // eslint-disable-line no-console
       return NextResponse.json(
-        { error: "Formularz kontaktowy jest tymczasowo niedostępny. Prosimy o kontakt telefoniczny." },
+        {
+          error:
+            "Formularz kontaktowy jest tymczasowo niedostępny. Prosimy o kontakt telefoniczny.",
+        },
         { status: 503 },
       );
     }

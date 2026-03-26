@@ -54,6 +54,26 @@ This triggers the `post-receive` hook on the VPS, which:
 2. Builds the Docker image
 3. Restarts the container on port 3003
 
+## Turnstile keys (contact form anti-spam)
+
+Keys are **not** something you invent locally. You create them in **Cloudflare**:
+
+1. Log in at [dash.cloudflare.com](https://dash.cloudflare.com) (a free Cloudflare account is enough).
+2. Open **Turnstile** in the sidebar → **Add widget**.
+3. Give it a name (e.g. `sadycelmerow`), choose **Managed**, and under hostnames add `sadycelmerow.pl`, `www.sadycelmerow.pl`, and `localhost` if you test locally.
+4. After creation, copy **Site key** and **Secret key**.
+
+On the VPS, put them in `/srv/sady-celmerow/.env.local` (same file as Gmail):
+
+```
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=paste_site_key_here
+TURNSTILE_SECRET_KEY=paste_secret_key_here
+```
+
+Because `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is baked in at **build** time, after changing it run a deploy (`git push vps main`) or manually: `cd /srv/sady-celmerow && docker compose up -d --build`.
+
+For **local dev only**, Cloudflare documents [dummy keys that always pass](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) — see `.env.local.example`.
+
 ## Step 3: Verify
 
 Open in your browser:

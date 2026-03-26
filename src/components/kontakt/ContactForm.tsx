@@ -1,24 +1,60 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { AlertCircle, CheckCircle, Send } from "lucide-react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 
 type Status = "idle" | "sending" | "sent" | "error";
+
+const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const formStartedAtRef = useRef(0);
+  const turnstileRef = useRef<TurnstileInstance>(null);
+
+  useEffect(() => {
+    formStartedAtRef.current = Date.now();
+  }, []);
+
+  const resetForNewMessage = useCallback(() => {
+    setStatus("idle");
+    setErrorMsg("");
+    setTurnstileToken("");
+    formStartedAtRef.current = Date.now();
+    turnstileRef.current?.reset();
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!siteKey) {
+      setErrorMsg("Formularz nie jest w pełni skonfigurowany. Skontaktuj się telefonicznie.");
+      setStatus("error");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setErrorMsg("Potwierdź, że nie jesteś robotem (pole powyżej).");
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
     setErrorMsg("");
 
     const form = e.currentTarget;
+    const website = (form.elements.namedItem("website") as HTMLInputElement).value;
+
     const data = {
       name: (form.elements.namedItem("name") as HTMLInputElement).value,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      website,
+      formStartedAt: formStartedAtRef.current,
+      turnstileToken,
     };
 
     try {
@@ -33,14 +69,20 @@ export default function ContactForm() {
       if (!res.ok) {
         setErrorMsg(json.error || "Wystąpił nieoczekiwany błąd.");
         setStatus("error");
+        turnstileRef.current?.reset();
+        setTurnstileToken("");
         return;
       }
 
       setStatus("sent");
       form.reset();
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     } catch {
       setErrorMsg("Nie udało się połączyć z serwerem. Sprawdź połączenie internetowe.");
       setStatus("error");
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     }
   };
 
@@ -48,14 +90,13 @@ export default function ContactForm() {
     return (
       <div className="rounded-2xl border border-sage-200 bg-sage-50 p-8 text-center">
         <CheckCircle size={40} className="mx-auto text-sage-500" />
-        <p className="mt-4 font-serif text-xl font-bold text-sage-700">
-          Dziękujemy!
-        </p>
+        <p className="mt-4 font-serif text-xl font-bold text-sage-700">Dziękujemy!</p>
         <p className="mt-2 text-neutral-600">
           Twoja wiadomość została wysłana. Odezwiemy się wkrótce.
         </p>
         <button
-          onClick={() => setStatus("idle")}
+          type="button"
+          onClick={resetForNewMessage}
           className="mt-6 text-sm font-medium text-sage-600 transition-colors hover:text-sage-800"
         >
           Wyślij kolejną wiadomość
@@ -65,7 +106,22 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="relative space-y-5">
+      {/* Honeypot: leave empty — bots often fill "website" */}
+      <div
+        className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden opacity-0"
+        aria-hidden="true"
+      >
+        <label htmlFor="contact-website">Strona www</label>
+        <input
+          type="text"
+          id="contact-website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div>
         <label
           htmlFor="name"
@@ -119,6 +175,23 @@ export default function ContactForm() {
         />
       </div>
 
+      {siteKey ? (
+        <div className="min-h-[65px]">
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={siteKey}
+            onSuccess={setTurnstileToken}
+            onExpire={() => setTurnstileToken("")}
+            options={{ language: "pl", theme: "auto" }}
+          />
+        </div>
+      ) : (
+        <p className="text-sm text-amber-800">
+          Brak klucza weryfikacji (NEXT_PUBLIC_TURNSTILE_SITE_KEY). Dodaj go w konfiguracji
+          serwera.
+        </p>
+      )}
+
       {status === "error" && (
         <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           <AlertCircle size={18} className="mt-0.5 flex-shrink-0" />
@@ -128,7 +201,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending"}
+        disabled={status === "sending" || !siteKey || !turnstileToken}
         className="inline-flex items-center gap-2 rounded-full bg-sage-500 px-8 py-3 font-medium text-white shadow transition-all hover:bg-sage-600 hover:shadow-md active:scale-[0.98] disabled:opacity-60"
       >
         <Send size={18} />
