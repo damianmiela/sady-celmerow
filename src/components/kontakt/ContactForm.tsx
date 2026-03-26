@@ -182,7 +182,7 @@ export default function ContactForm() {
             siteKey={siteKey}
             onSuccess={setTurnstileToken}
             onExpire={() => setTurnstileToken("")}
-            options={{ language: "pl", theme: "auto" }}
+            options={{ language: "pl", theme: "light" }}
           />
         </div>
       ) : (
