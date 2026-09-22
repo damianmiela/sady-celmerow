@@ -10,16 +10,16 @@ How to configure your local machine to push-deploy to the VPS.
 ## Configuration
 
 ```
-VPS_HOST=91.98.112.186
+VPS_HOST=<server-ip>
 VPS_PORT=22
-VPS_USER=root
+VPS_USER=<user>
 REPO_PATH=/opt/sady-celmerow-deploy.git
 ```
 
 ## Step 1: Add the VPS as a Git Remote
 
 ```bash
-git remote add vps ssh://root@91.98.112.186/opt/sady-celmerow-deploy.git
+git remote add vps ssh://<user>@<server-ip>/opt/sady-celmerow-deploy.git
 ```
 
 ### Alternative: Using SSH Config Alias
@@ -30,8 +30,8 @@ Add to `~/.ssh/config` (if not already present):
 
 ```
 Host dendigital
-    HostName 91.98.112.186
-    User root
+    HostName <server-ip>
+    User <user>
     Port 22
     IdentityFile ~/.ssh/id_rsa
 ```
@@ -79,7 +79,7 @@ For **local dev only**, Cloudflare documents [dummy keys that always pass](https
 Open in your browser:
 
 ```
-http://91.98.112.186:3003
+http://<server-ip>:3003
 ```
 
 You should see the "Sady Celmerów" placeholder page.
@@ -99,22 +99,22 @@ git push vps main
 - **Check deploy log on VPS:**
 
   ```bash
-  ssh root@91.98.112.186 "tail -50 /srv/sady-celmerow/deploy.log"
+  ssh <user>@<server-ip> "tail -50 /srv/sady-celmerow/deploy.log"
   ```
 
 - **Check container status:**
 
   ```bash
-  ssh root@91.98.112.186 "docker ps | grep sady-celmerow"
+  ssh <user>@<server-ip> "docker ps | grep sady-celmerow"
   ```
 
 - **Check container logs:**
 
   ```bash
-  ssh root@91.98.112.186 "docker logs sady-celmerow --tail 50"
+  ssh <user>@<server-ip> "docker logs sady-celmerow --tail 50"
   ```
 
 - **Manual rebuild on VPS:**
   ```bash
-  ssh root@91.98.112.186 "cd /srv/sady-celmerow && docker compose up -d --build"
+  ssh <user>@<server-ip> "cd /srv/sady-celmerow && docker compose up -d --build"
   ```
