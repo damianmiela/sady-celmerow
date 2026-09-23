@@ -31,7 +31,7 @@ sells apples and juices.
 
 ## Run it locally
 
-You need Node.js 20. In the cloned folder:
+You need Node.js 20 or newer. In the cloned folder:
 
 ```bash
 npm ci
