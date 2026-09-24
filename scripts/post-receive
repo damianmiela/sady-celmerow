@@ -38,9 +38,9 @@ export COMPOSE_DOCKER_CLI_BUILD=1
         cd "${APP_DIR}"
 
         # 3. Build and restart container
-        echo ">>> Building and restarting Docker container..."
-        docker compose down --remove-orphans 2>/dev/null || true
-        docker compose up -d --build
+        echo ">>> Building the new image (the site keeps running), then restarting..."
+        docker compose build
+        docker compose up -d --remove-orphans
 
         # 4. Clean up dangling images (saves disk)
         echo ">>> Cleaning up old Docker images..."

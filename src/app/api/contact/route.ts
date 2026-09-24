@@ -303,7 +303,7 @@ export async function POST(request: Request) {
     await Promise.all([
       transporter.sendMail({
         from: `"Formularz Sady Celmerów" <${GMAIL_USER}>`,
-        replyTo: `"${name}" <${email}>`,
+        replyTo: { name, address: email }, // nodemailer quotes the name; no hand-built header
         to: CONTACT_RECIPIENT,
         subject: `Nowa wiadomość od ${name} — sadycelmerow.pl`,
         text: [
