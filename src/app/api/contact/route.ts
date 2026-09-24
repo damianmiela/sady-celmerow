@@ -91,6 +91,16 @@ function checkTiming(formStartedAt: unknown): string | null {
   return null;
 }
 
+/**
+ * First name for the confirmation greeting, or null. The confirmation goes to
+ * whatever address the visitor typed, so it must not carry their free text:
+ * only a plain word of letters is used (no links).
+ */
+function greetingName(name: string): string | null {
+  const first = name.trim().split(/\s+/)[0] ?? "";
+  return /^[\p{L}'-]{2,30}$/u.test(first) ? first : null;
+}
+
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -170,7 +180,8 @@ function buildNotificationEmail(name: string, email: string, message: string): s
 </html>`;
 }
 
-function buildConfirmationEmail(name: string, message: string): string {
+function buildConfirmationEmail(name: string): string {
+  const first = greetingName(name);
   return `<!DOCTYPE html>
 <html lang="pl">
 <head><meta charset="utf-8"></head>
@@ -188,20 +199,12 @@ function buildConfirmationEmail(name: string, message: string): string {
         <!-- Greeting -->
         <tr><td style="padding:32px 40px 0;text-align:center;">
           <div style="display:inline-block;width:52px;height:52px;border-radius:50%;background-color:#F0F5EE;line-height:52px;font-size:24px;text-align:center;">&#10003;</div>
-          <h2 style="margin:16px 0 0;font-size:20px;color:#1F3224;font-weight:600;">Dziękujemy, ${escapeHtml(name.split(" ")[0])}!</h2>
+          <h2 style="margin:16px 0 0;font-size:20px;color:#1F3224;font-weight:600;">Dziękujemy${first ? `, ${escapeHtml(first)}` : ""}!</h2>
           <p style="margin:10px 0 0;font-size:15px;color:#666;line-height:1.6;">Twoja wiadomość dotarła do nas pomyślnie.<br>Postaramy się odpowiedzieć jak najszybciej.</p>
         </td></tr>
 
-        <!-- Message summary -->
-        <tr><td style="padding:28px 40px;">
-          <p style="margin:0 0 10px;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#6A9E5B;font-weight:600;">Twoja wiadomość</p>
-          <div style="padding:20px;background-color:#FEFDFB;border:1px solid #EBE4D6;border-radius:10px;">
-            <p style="margin:0;font-size:14px;line-height:1.7;color:#555;white-space:pre-wrap;">${escapeHtml(message)}</p>
-          </div>
-        </td></tr>
-
         <!-- Contact info -->
-        <tr><td style="padding:0 40px 32px;">
+        <tr><td style="padding:28px 40px 32px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F0F5EE;border-radius:10px;">
             <tr><td style="padding:20px;text-align:center;">
               <p style="margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#6A9E5B;font-weight:600;">Kontakt bezpośredni</p>
@@ -299,6 +302,7 @@ export async function POST(request: Request) {
     const name = body.name.trim();
     const email = body.email.trim();
     const message = body.message.trim();
+    const first = greetingName(name);
 
     await Promise.all([
       transporter.sendMail({
@@ -320,12 +324,9 @@ export async function POST(request: Request) {
         to: email,
         subject: `Potwierdzenie wiadomości — Sady Celmerów`,
         text: [
-          `Cześć ${name.split(" ")[0]}!`,
+          first ? `Cześć ${first}!` : "Cześć!",
           ``,
           `Dziękujemy za wiadomość. Dotarła do nas pomyślnie i postaramy się odpowiedzieć jak najszybciej.`,
-          ``,
-          `Twoja wiadomość:`,
-          message,
           ``,
           `Kontakt bezpośredni:`,
           `Szymon Celmer — 667 599 922`,
@@ -336,7 +337,7 @@ export async function POST(request: Request) {
           `ul. Obornicka 18, 55-100 Trzebnica`,
           `sadycelmerow.pl`,
         ].join("\n"),
-        html: buildConfirmationEmail(name, message),
+        html: buildConfirmationEmail(name),
       }),
     ]);
 
