@@ -6,7 +6,7 @@ import { heroBlur } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Spotkaj nas | Sady Celmerów",
   description:
-    "Jabłkobranie, Bazar Smakoszy we Wrocławiu i punkty sprzedaży soków i jabłek z Sadów Celmerów. Sprawdź, gdzie nas spotkasz!",
+    "Jabłkomat 24/7, Jabłkobranie, Bazar Smakoszy we Wrocławiu i punkty sprzedaży soków i jabłek z Sadów Celmerów. Sprawdź, gdzie nas spotkasz!",
   alternates: { canonical: "https://sadycelmerow.pl/spotkaj-nas" },
 };
 

@@ -3,12 +3,16 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook, MapPin, Clock, ExternalLink } from "lucide-react";
+import { Facebook, MapPin, Clock, ExternalLink, Navigation } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SalesMap from "@/components/odwiedz-nas/SalesMap";
 import Lightbox from "@/components/ui/Lightbox";
 import { siteConfig } from "@/lib/data";
+import { salesPoints } from "@/lib/salesPoints";
+
+// The Jabłkomat stands at the farm gate, so it shares the HQ pin's directions link.
+const hqMapsUrl = salesPoints.find((p) => p.isHQ)?.mapsUrl;
 
 const jablkobraniePhotos = [
   { src: "/images/gallery/jablkobranie-glowne.jpg", thumb: "/images/gallery/jablkobranie-glowne-thumb.jpg", alt: "Pieczenie kiełbasek na ognisku podczas Jabłkobrania u Celmerów" },
@@ -49,6 +53,85 @@ export default function SpotkajNasContent() {
 
   return (
     <>
+      {/* ── Jabłkomat ─────────────────────────────────────── */}
+      <section className="section-padding bg-white">
+        <SectionHeading>Jabłkomat 24/7</SectionHeading>
+
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col items-center gap-8 md:flex-row-reverse md:gap-12">
+            <AnimatedSection className="flex-1 space-y-5">
+              <p className="leading-relaxed text-neutral-600">
+                Przy bramie naszego gospodarstwa stoi{" "}
+                <span className="font-semibold text-sage-700">Jabłkomat</span>{" "}
+                — automat z jabłkami prosto z naszego sadu, czynny całą dobę.
+                Wybierasz skrytkę, płacisz i zabierasz świeże owoce, kiedy
+                tylko masz ochotę — także wieczorem i w weekend.
+              </p>
+              <p className="leading-relaxed text-neutral-600">
+                Wolisz porozmawiać i doradzić się przy wyborze? Zapraszamy też
+                do środka — w gospodarstwie kupisz jabłka i soki bezpośrednio
+                od nas.
+              </p>
+              <p className="leading-relaxed text-neutral-600">
+                Aktualne odmiany w Jabłkomacie ogłaszamy na naszym{" "}
+                <a
+                  href={siteConfig.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-semibold text-sage-700 underline decoration-sage-300 underline-offset-2 hover:text-sage-800"
+                >
+                  <Facebook size={16} />
+                  Facebooku
+                </a>
+                .
+              </p>
+
+              <div className="mt-4 space-y-2 rounded-xl bg-cream-50 p-4">
+                <div className="flex items-start gap-2 text-sm text-neutral-600">
+                  <MapPin size={16} className="mt-0.5 flex-shrink-0 text-sage-600" />
+                  <span className="font-semibold text-sage-700">
+                    {siteConfig.address.street}, {siteConfig.address.city}
+                  </span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-neutral-600">
+                  <Clock size={16} className="mt-0.5 flex-shrink-0 text-sage-600" />
+                  <span>
+                    Czynny <span className="font-medium">całą dobę, 7 dni w tygodniu</span>
+                  </span>
+                </div>
+                {hqMapsUrl && (
+                  <a
+                    href={hqMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-sage-700 underline decoration-sage-300 underline-offset-2 hover:text-sage-800"
+                  >
+                    <Navigation size={16} />
+                    Wyznacz trasę
+                  </a>
+                )}
+              </div>
+            </AnimatedSection>
+
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5 }}
+              className="w-full flex-shrink-0 overflow-hidden rounded-2xl shadow-md md:w-[45%]"
+            >
+              <Image
+                src="/images/gallery/jablkomat.jpg"
+                alt="Jabłkomat Sadów Celmerów — automat ze skrytkami pełnymi jabłek pod drewnianym daszkiem przy bramie gospodarstwa"
+                width={1500}
+                height={1125}
+                className="h-64 w-full object-cover sm:h-80"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Jabłkobranie ─────────────────────────────────── */}
       <section className="section-padding bg-cream-50">
         <SectionHeading>Jabłkobranie</SectionHeading>

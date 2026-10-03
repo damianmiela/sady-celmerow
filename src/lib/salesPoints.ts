@@ -18,7 +18,7 @@ export const salesPoints: SalesPoint[] = [
     lat: 51.30634389983335,
     lng: 17.05018064172381,
     description:
-      "Siedziba gospodarstwa — tutaj możesz kupić jabłka i soki bezpośrednio od producenta.",
+      "Siedziba gospodarstwa — tutaj możesz kupić jabłka i soki bezpośrednio od producenta. Przy bramie stoi Jabłkomat, czynny całą dobę.",
     mapsUrl: "https://maps.app.goo.gl/fWoKNBcPtvz2jHPF7",
     isHQ: true,
   },

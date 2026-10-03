@@ -27,7 +27,7 @@ const features = [
     icon: MapPin,
     title: "Spotkaj nas",
     description:
-      "Jabłkobranie, Bazar Smakoszy i punkty sprzedaży — sprawdź, gdzie nas znajdziesz!",
+      "Jabłkomat 24/7, Jabłkobranie, Bazar Smakoszy i punkty sprzedaży — sprawdź, gdzie nas znajdziesz!",
     href: "/spotkaj-nas",
     image: "/images/gallery/sad-nowe-02.jpg",
     objectPosition: "top",
