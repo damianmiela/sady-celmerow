@@ -39,12 +39,32 @@ function validate(body: ContactBody): string | null {
   return null;
 }
 
+/**
+ * The visitor's IP as set by Nginx Proxy Manager, which overwrites X-Real-IP with
+ * the real connection address. X-Forwarded-For is not used: the proxy appends to
+ * it, so its first entry is whatever the client sent.
+ */
 function getClientIp(request: Request): string | undefined {
-  const xff = request.headers.get("x-forwarded-for");
-  if (xff) {
-    return xff.split(",")[0]?.trim();
+  return request.headers.get("x-real-ip")?.trim() || undefined;
+}
+
+/** Max messages per IP per hour. In-memory: resets on restart, one process (fine for one container). */
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 60 * 60 * 1000;
+const hits = new Map<string, { count: number; resetAt: number }>();
+
+function allowRequest(ip: string, now = Date.now()): boolean {
+  for (const [key, entry] of hits) {
+    if (now >= entry.resetAt) hits.delete(key); // prune expired windows so the map can't grow forever
   }
-  return request.headers.get("x-real-ip") ?? undefined;
+  const entry = hits.get(ip);
+  if (!entry) {
+    hits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT) return false;
+  entry.count++;
+  return true;
 }
 
 async function verifyTurnstile(token: string, remoteip?: string): Promise<boolean> {
@@ -240,6 +260,14 @@ const GENERIC_REJECT =
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    if (!allowRequest(ip ?? "unknown")) {
+      return NextResponse.json(
+        { error: "Zbyt wiele wiadomości. Spróbuj ponownie za godzinę lub zadzwoń do nas." },
+        { status: 429 },
+      );
+    }
+
     const body: ContactBody = await request.json();
 
     if (typeof body.website === "string" && body.website.trim() !== "") {
@@ -268,7 +296,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const ip = getClientIp(request);
     const turnstileOk = await verifyTurnstile(token, ip);
     if (!turnstileOk) {
       return NextResponse.json(
