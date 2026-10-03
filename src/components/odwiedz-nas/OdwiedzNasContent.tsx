@@ -11,8 +11,8 @@ import Lightbox from "@/components/ui/Lightbox";
 import { siteConfig } from "@/lib/data";
 import { salesPoints } from "@/lib/salesPoints";
 
-// The Jabłkomat stands at the farm gate, so it shares the HQ pin's directions link.
-const hqMapsUrl = salesPoints.find((p) => p.isHQ)?.mapsUrl;
+const jablkomatMapsUrl = "https://maps.app.goo.gl/JYHZtBh49D2X24t87";
+const bazarMapsUrl = salesPoints.find((p) => p.id === "bazar-smakoszy")?.mapsUrl;
 
 const jablkobraniePhotos = [
   { src: "/images/gallery/jablkobranie-glowne.jpg", thumb: "/images/gallery/jablkobranie-glowne-thumb.jpg", alt: "Pieczenie kiełbasek na ognisku podczas Jabłkobrania u Celmerów" },
@@ -99,17 +99,15 @@ export default function SpotkajNasContent() {
                     Czynny <span className="font-medium">całą dobę, 7 dni w tygodniu</span>
                   </span>
                 </div>
-                {hqMapsUrl && (
-                  <a
-                    href={hqMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-sage-700 underline decoration-sage-300 underline-offset-2 hover:text-sage-800"
-                  >
-                    <Navigation size={16} />
-                    Wyznacz trasę
-                  </a>
-                )}
+                <a
+                  href={jablkomatMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-sage-700 underline decoration-sage-300 underline-offset-2 hover:text-sage-800"
+                >
+                  <Navigation size={16} />
+                  Wyznacz trasę
+                </a>
               </div>
             </AnimatedSection>
 
@@ -261,6 +259,17 @@ export default function SpotkajNasContent() {
                     {" · "}Niedziela: <span className="font-medium">10:00–14:00</span>
                   </span>
                 </div>
+                {bazarMapsUrl && (
+                  <a
+                    href={bazarMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-sage-700 underline decoration-sage-300 underline-offset-2 hover:text-sage-800"
+                  >
+                    <Navigation size={16} />
+                    Wyznacz trasę
+                  </a>
+                )}
               </div>
             </AnimatedSection>
 
